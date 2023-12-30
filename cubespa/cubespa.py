@@ -37,8 +37,8 @@ class CubeSPA:
         
         
         self.cube_noise_level, self.cube_rms = utils.estimate_rms(self.cube.data, 
-                                                                  check_kwarg("cmin", 5, kwargs), 
-                                                                  check_kwarg("cmax", 5, kwargs))
+                                                                  utils.check_kwarg("cmin", 5, kwargs), 
+                                                                  utils.check_kwarg("cmax", 5, kwargs))
 
         self.center = center
         self.position_angle = position_angle
@@ -77,7 +77,7 @@ class CubeSPA:
     
     # UTILITY FUNCTIONS
     def plot_moment_maps(self, use_limits=True, **kwargs):
-        filename = check_kwarg("filename", None, kwargs)
+        filename = utils.check_kwarg("filename", None, kwargs)
 
         plotting.moment_map_plot(self, use_limits=use_limits, filename=filename, kwargs=kwargs)
 
@@ -90,11 +90,3 @@ class CubeSPA:
         if return_products:
             return aper, spectrum
         
-
-
-
-def check_kwarg(key, default, kwargs: dict):
-    if key in kwargs.keys(): 
-        return kwargs[key]
-    else: 
-        return default

@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     version=cubespa.__version__,
     license='BSD-3-Clause',
-    description = '',
+    description = 'Cube SPectral Analysis',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author="Harrison Souchereau",

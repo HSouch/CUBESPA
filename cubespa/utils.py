@@ -142,8 +142,9 @@ def imstat(a):
     }
 
 def im_bounds(stats, sigma=1):
-    if type(sigma) is not tuple:
+    if type(sigma) in (int, float):
         sigma = (sigma, sigma)
+
 
     low = stats["MEDIAN"] - sigma[0] * stats["STD"]
     high = stats["MEDIAN"] + sigma[1] * stats["STD"]
@@ -154,9 +155,15 @@ def im_bounds(stats, sigma=1):
 def normalized_rgb_image(image, sigma=1, stretch=None):
     r,g,b = image
 
-    bounds_r = im_bounds(imstat(r), sigma=sigma)
-    bounds_g = im_bounds(imstat(g), sigma=sigma)
-    bounds_b = im_bounds(imstat(b), sigma=sigma)
+    # If the sigma length is 3, assume it's of the format [sigma_r, sigma_g, sigma_br]
+    if type(sigma) not in (int, float) and len(sigma) == 3:
+        sigma_r, sigma_g, sigma_b = sigma
+    else:
+        sigma_r = sigma_g = sigma_b = sigma
+    
+    bounds_r = im_bounds(imstat(r), sigma=sigma_r)
+    bounds_g = im_bounds(imstat(g), sigma=sigma_g)
+    bounds_b = im_bounds(imstat(b), sigma=sigma_b)
 
     r = normalize(r, clip_low=bounds_r[0], clip_high=bounds_r[1], stretch=stretch)
     g = normalize(g, clip_low=bounds_g[0], clip_high=bounds_g[1], stretch=stretch)
