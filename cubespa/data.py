@@ -69,15 +69,14 @@ def load_moment_maps(topdir, data_index=0):
 
 
 def handle_data(data, handler, data_index=0):
-    """ Handle incoming data for the CubeSPA object.
-        If not a string, CubeSPA will assume it is 
+    """ Handle incoming data for the CubeSPA object. 
+    If not a string, CubeSPA will return the data enclosed in a dataset without additional info.
     Args:
         data (str or cubespa.DataSet): Incoming data. If str, CubeSPA will automatically load it in.
         handler (method): Method to handle data, either set to load_data or load_moment_maps
         data_index (int, optional): Index to find data in. Defaults to 0.
-
     Returns:
-        _type_: 
+        utils.DataSet : The output DataSet object. 
     """
     if type(data) == str:
         return handler(data, data_index=data_index)

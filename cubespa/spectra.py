@@ -52,3 +52,20 @@ def analyze_spectra(spec, sigma=2, cmin=None, cmax=None):
     spec_med, spec_std = sigma_clipped_stats(spec, sigma=sigma)[1:]
 
     return spec_med, spec_std
+
+
+def multi_spec(cubespa_obj, spec_info, plot=True):
+
+    aper_list, spec_list = [], []
+
+    for spec in spec_info:
+        position, shape = spec
+        # print(position, shape)
+
+        aper = create_aperture(cubespa_obj, position, shape)
+        spec = get_spectra(cubespa_obj.cube.data, aper)
+
+        aper_list.append(aper)
+        spec_list.append(spec)
+    
+    return aper_list, spec_list
