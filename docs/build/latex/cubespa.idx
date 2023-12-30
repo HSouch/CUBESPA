@@ -1,0 +1,11 @@
+\indexentry{module@\spxentry{module}!cubespa.cubespa@\spxentry{cubespa.cubespa}|hyperpage}{8}
+\indexentry{cubespa.cubespa@\spxentry{cubespa.cubespa}!module@\spxentry{module}|hyperpage}{8}
+\indexentry{CubeSPA (class in cubespa.cubespa)@\spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}|hyperpage}{8}
+\indexentry{create\_spectra() (cubespa.cubespa.CubeSPA method)@\spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}|hyperpage}{8}
+\indexentry{load\_dir() (cubespa.cubespa.CubeSPA method)@\spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}|hyperpage}{8}
+\indexentry{plot\_moment\_maps() (cubespa.cubespa.CubeSPA method)@\spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}|hyperpage}{8}
+\indexentry{velocities\_from\_wcs() (cubespa.cubespa.CubeSPA method)@\spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}|hyperpage}{8}
+\indexentry{check\_kwarg() (in module cubespa.cubespa)@\spxentry{check\_kwarg()}\spxextra{in module cubespa.cubespa}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!cubespa.plotting.mommap\_plots@\spxentry{cubespa.plotting.mommap\_plots}|hyperpage}{10}
+\indexentry{cubespa.plotting.mommap\_plots@\spxentry{cubespa.plotting.mommap\_plots}!module@\spxentry{module}|hyperpage}{10}
+\indexentry{moment\_map\_plot() (in module cubespa.plotting.mommap\_plots)@\spxentry{moment\_map\_plot()}\spxextra{in module cubespa.plotting.mommap\_plots}|hyperpage}{10}

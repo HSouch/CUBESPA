@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: cubespa
+Version: 0.0.5
+Home-page: https://github.com/HSouch/cubespa
+Author: Harrison Souchereau
+Author-email: harrison.souchereau@yale.edu
+License: BSD-3-Clause
+Keywords: galaxies datacubes spectra
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+
+# CUBE SPectral Analysis
+
+Take your datacubes to the spa for complete analysis.

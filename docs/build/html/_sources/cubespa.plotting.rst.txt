@@ -1,0 +1,61 @@
+cubespa.plotting package
+========================
+
+Submodules
+----------
+
+cubespa.plotting.channel\_map\_plots module
+-------------------------------------------
+
+.. automodule:: cubespa.plotting.channel_map_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.plotting.mommap\_plots module
+-------------------------------------
+
+.. automodule:: cubespa.plotting.mommap_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.plotting.overlay\_plots module
+--------------------------------------
+
+.. automodule:: cubespa.plotting.overlay_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.plotting.pvd\_plots module
+----------------------------------
+
+.. automodule:: cubespa.plotting.pvd_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.plotting.spectra\_plots module
+--------------------------------------
+
+.. automodule:: cubespa.plotting.spectra_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.plotting.util\_plots module
+-----------------------------------
+
+.. automodule:: cubespa.plotting.util_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cubespa.plotting
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting Started &#8212; CubeSPA  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generating Moment Maps" href="momentmaps.html" />
+    <link rel="prev" title="CubeSPA" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<p>The following documentation outlines how to load in data, from an initial cube, to moment maps, to additional data
+in both single frame and RGB image form.</p>
+<section id="initial-cubespa-object">
+<h2>Initial CubeSPA object<a class="headerlink" href="#initial-cubespa-object" title="Permalink to this heading">¶</a></h2>
+<p>To begin using CubeSPA, create a <code class="docutils literal notranslate"><span class="pre">cubespa.CubeSPA</span></code> object with the filename for your cube in the following way:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cubespa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;path/to/cube.fits&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">cube_fn</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can load in moment maps (assuming the convention from  <a class="reference external" href="https://github.com/tonywong94/maskmoment">maskmoment</a> ) with the following. If your maskmoment output is
+<code class="docutils literal notranslate"><span class="pre">path/to/maskmoment.mom0.fits.gz</span></code>, for the moment 0 map (.mom1, .mom2 for the others), these are loaded as follows below. With
+moment maps loaded, you can also create a bounding box around “valid” data by calling the <code class="docutils literal notranslate"><span class="pre">limits</span> <span class="pre">=</span> <span class="pre">&quot;auto&quot;</span></code> feature.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;path/to/cube.fits&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mommaps</span> <span class="o">=</span> <span class="s2">&quot;path/to/maskmoment&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">cube_fn</span><span class="p">,</span> <span class="n">mom_maps</span><span class="o">=</span><span class="n">mommaps</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="additional-data">
+<h2>Additional data<a class="headerlink" href="#additional-data" title="Permalink to this heading">¶</a></h2>
+<p>Additional data that doesn’t require a full cube object can be loaded as a <code class="docutils literal notranslate"><span class="pre">cubespa.DataSet()</span></code> object.
+Note that all of the data in the cubeSPA object loaded above are also cubespa.DataSet() objects, which stores
+the wcs and header information for easier access.</p>
+<p>For example, if you had an H-alpha map of your galaxy, you might load it as follows:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">halpha</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">halpha_fn</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;HALPHA&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, this map might not be aligned with your cube. CubeSPA uses the <a class="reference external" href="https://reproject.readthedocs.io/en/stable/">reproject</a>
+package to properly align maps together. Once you have your <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> object, you can align it with</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">halpha_interp</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">align_image</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mom_maps</span><span class="o">.</span><span class="n">mom0</span><span class="p">,</span> <span class="n">halpha</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where we are using the moment 0 map to align the images. CubeSPA <em>should</em> be able to automatically
+align images with a cube directly, where it will do some wcs <code class="docutils literal notranslate"><span class="pre">dropaxis</span></code> trickery to try and match things
+together.</p>
+<p>Lastly, it is good practice to add these datasets to the parent CubeSPA object’s <code class="docutils literal notranslate"><span class="pre">additional_maps</span></code> attribute:</p>
+<p>&gt;&gt; c.additional_maps.extend([halpha_interp, (…)])</p>
+</section>
+<section id="rgb-images">
+<h2>RGB images<a class="headerlink" href="#rgb-images" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is notoriously tricky for RGB images of astronomical data. CubeSPA has some built-in features
+to improve the experience with displaying RGB data, particularly HST images.</p>
+<p>For example, if we load in an hst image and then create an aligned image, we can see what it looks like by
+default with the following code:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hst</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">hst_fn</span><span class="p">,</span> <span class="n">rgb_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;HST&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hst_interp</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">align_image</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mom_maps</span><span class="o">.</span><span class="n">mom0</span><span class="p">,</span> <span class="n">hst</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">hst_interp</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Transpose the data into the proper rgb pixel format for matplotlib</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cubespa</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_rgb</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">lims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">limits</span><span class="p">),</span> <span class="n">outname</span><span class="o">=</span><span class="s2">&quot;./rgb_nonorm.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This returns the following.</p>
+<a class="reference internal image-reference" href="_images/rgb_nonorm.png"><img alt="Alternative text" src="_images/rgb_nonorm.png" style="width: 400px;" /></a>
+<p>The RGB image can be histogram-normalized by doing the following:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">normalized_rgb_image</span><span class="p">(</span><span class="n">hst_interp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubespa</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_rgb</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="n">lims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">limits</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">sigma</span></code> defines the lower and upper bounds to stretch each RGB frame to. This returns a map that
+look like:</p>
+<a class="reference internal image-reference" href="_images/rgb_norm.png"><img alt="Alternative text" src="_images/rgb_norm.png" style="width: 400px;" /></a>
+<p>If the user wants to look at faint features, simply decrease the upper stretch. This will increase the visibility
+of faint features at the cost of saturating the central disk.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">normalized_rgb_image</span><span class="p">(</span><span class="n">hst_interp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubespa</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_rgb</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="n">lims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">limits</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/rgb_faint.png"><img alt="Alternative text" src="_images/rgb_faint.png" style="width: 400px;" /></a>
+</section>
+<section id="cutouts-and-regions">
+<h2>Cutouts and Regions<a class="headerlink" href="#cutouts-and-regions" title="Permalink to this heading">¶</a></h2>
+<p>To create specific cutouts (for analysis of certain regions), the user supplies the parent CubeSPA object,
+the central location of the cutout, and the size of the cutout (either as an int, for a square, or as a
+tuple to establish a rectangular region). The output is a new CubeSPA object where the cube, moment maps,
+and any additional maps are trimmed to the location and size of the cutout.</p>
+<p>For example, if I was looking at 3 different regions (blob, fallback, and outskirts) for some datacube of a
+galaxy, I would create it with the following.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">blob</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">gen_cutout</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="mi">290</span><span class="p">),</span> <span class="mi">15</span><span class="p">,</span> <span class="n">show_bbox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fallback</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">gen_cutout</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="mi">305</span><span class="p">,</span> <span class="mi">310</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">show_bbox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outskirts</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">gen_cutout</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">403</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span> <span class="n">show_bbox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The additional parameter <code class="docutils literal notranslate"><span class="pre">show_bbox</span></code> will generate a plot to show you where the cutout falls on the parent
+image. This is helpful for more closely aligning the cutouts.</p>
+</section>
+<section id="module-cubespa.cubespa">
+<span id="reference-api"></span><h2>Reference/API<a class="headerlink" href="#module-cubespa.cubespa" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubespa.cubespa.</span></span><span class="sig-name descname"><span class="pre">CubeSPA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mom_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.create_spectra">
+<span class="sig-name descname"><span class="pre">create_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_products</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.create_spectra" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.load_dir">
+<span class="sig-name descname"><span class="pre">load_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.load_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.plot_moment_maps">
+<span class="sig-name descname"><span class="pre">plot_moment_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.plot_moment_maps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.velocities_from_wcs">
+<span class="sig-name descname"><span class="pre">velocities_from_wcs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.velocities_from_wcs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cubespa.cubespa.check_kwarg">
+<span class="sig-prename descclassname"><span class="pre">cubespa.cubespa.</span></span><span class="sig-name descname"><span class="pre">check_kwarg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.check_kwarg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">CubeSPA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="momentmaps.html">Generating Moment Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overlays.html">Making Overlays</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spectra.html">Spectral Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pvds.html">Position-Velocity diagrams</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">Generating / Fitting Velocity Models</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">CubeSPA</a></li>
+      <li>Next: <a href="momentmaps.html" title="next chapter">Generating Moment Maps</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Harrison Souchereau.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/getting_started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

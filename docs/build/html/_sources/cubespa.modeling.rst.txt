@@ -1,0 +1,21 @@
+cubespa.modeling package
+========================
+
+Submodules
+----------
+
+cubespa.modeling.velocity\_map module
+-------------------------------------
+
+.. automodule:: cubespa.modeling.velocity_map
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cubespa.modeling
+   :members:
+   :undoc-members:
+   :show-inheritance:

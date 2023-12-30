@@ -1,0 +1,86 @@
+cubespa package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   cubespa.modeling
+   cubespa.plotting
+
+Submodules
+----------
+
+cubespa.channel\_maps module
+----------------------------
+
+.. automodule:: cubespa.channel_maps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.cubespa module
+----------------------
+
+.. automodule:: cubespa.cubespa
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.data module
+-------------------
+
+.. automodule:: cubespa.data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.moment\_maps module
+---------------------------
+
+.. automodule:: cubespa.moment_maps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.overlays module
+-----------------------
+
+.. automodule:: cubespa.overlays
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.pvds module
+-------------------
+
+.. automodule:: cubespa.pvds
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.spectra module
+----------------------
+
+.. automodule:: cubespa.spectra
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cubespa.utils module
+--------------------
+
+.. automodule:: cubespa.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cubespa
+   :members:
+   :undoc-members:
+   :show-inheritance:

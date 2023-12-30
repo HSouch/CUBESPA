@@ -1,0 +1,36 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter C
+  \item \spxentry{check\_kwarg()}\spxextra{in module cubespa.cubespa}, \hyperpage{8}
+  \item \spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{8}
+  \item \spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}, \hyperpage{8}
+  \item \spxentry{cubespa.cubespa}
+    \subitem \spxentry{module}, \hyperpage{8}
+  \item \spxentry{cubespa.plotting.mommap\_plots}
+    \subitem \spxentry{module}, \hyperpage{10}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{8}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{cubespa.cubespa}, \hyperpage{8}
+    \subitem \spxentry{cubespa.plotting.mommap\_plots}, \hyperpage{10}
+  \item \spxentry{moment\_map\_plot()}\spxextra{in module cubespa.plotting.mommap\_plots}, 
+		\hyperpage{10}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{8}
+
+  \indexspace
+  \bigletter V
+  \item \spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{8}
+
+\end{sphinxtheindex}
