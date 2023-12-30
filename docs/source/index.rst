@@ -37,7 +37,7 @@ See getting_started.rst for more information.
 Loading Data
 ============
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     
     getting_started.rst
 
@@ -45,7 +45,7 @@ Loading Data
 ==============
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
         
     momentmaps.rst
     overlays.rst
@@ -54,7 +54,7 @@ Cube Analysis
 =============
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
         
     spectra.rst
     pvds.rst
@@ -63,7 +63,7 @@ Coming soon
 ===========
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    modeling.rst
     
@@ -71,6 +71,11 @@ Coming soon
 
 Indices and tables
 ==================
+
+.. toctree::
+   :maxdepth: 3
+
+   modules.rst
 
 * :ref:`genindex`
 * :ref:`modindex`

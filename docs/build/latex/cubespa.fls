@@ -1154,6 +1154,7 @@ INPUT ./blob_spectra.png
 INPUT ./blob_spectra.png
 INPUT blob_spectra.png
 INPUT ./blob_spectra.png
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmri.tfm
 INPUT ./example_pvd.png
 INPUT ./example_pvd.png
 INPUT example_pvd.png

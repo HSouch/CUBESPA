@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex cubespa.idx"] 1703960854 "cubespa.idx" "cubespa.ind" "cubespa" 1703960855 0
-  "cubespa.idx" 1703960855 1450 edeab2e6265fa09c288142bf1e1afc97 "pdflatex"
+["makeindex cubespa.idx"] 1703971612 "cubespa.idx" "cubespa.ind" "cubespa" 1703971615 0
+  "cubespa.idx" 1703971615 10096 7c820460367e7d2e023bd9f0540fd6c1 "pdflatex"
   (generated)
   "cubespa.ilg"
   "cubespa.ind"
   (rewritten before read)
-["pdflatex"] 1703960854 "cubespa.tex" "cubespa.pdf" "cubespa" 1703960855 0
+["pdflatex"] 1703971614 "cubespa.tex" "cubespa.pdf" "cubespa" 1703971615 0
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc" 1529098226 2457 aaabbccba4df2a7f7371410ee4e075a3 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1529098226 3124 3813fd4c981d99822890a2861b0d274c ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -29,6 +29,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qtmr.tfm" 1254269485 11504 0b76b46eb90907e684139293e03c466a ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ec-qtmri.tfm" 1254269485 11356 da1519f442d8a49b81c86cbaf25ef79f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmr.tfm" 1255129411 1600 20cdf11dab97d5d39e847571f9314407 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmri.tfm" 1255129411 1744 236018a0ac3444bdc221f881182030d8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/txfonts/t1xbtt.tfm" 1136768653 1436 f00b2a275be56a8355f5c3b07a5a7a4c ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/txfonts/t1xtt.tfm" 1136768653 1384 8943063000d26272532f74ca134dfecd ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/txfonts/t1xttsl.tfm" 1136768653 1624 fb8f48c6308ace0a799f9278aba03e18 ""
@@ -143,18 +144,18 @@
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
   "blob.png" 1703958429 17562 05107fb5c04a61d015ad95a5f3be078e ""
   "blob_spectra.png" 1703958549 13834 a939b7bcd4e7e58693fc0d9c9a71a834 ""
-  "cubespa.aux" 1703960855 6179 2d06b3299abb13afe9d0afe3fcfff930 "pdflatex"
-  "cubespa.ind" 1703960854 1314 f6cf345da0fdc950a6362add18034b2b "makeindex cubespa.idx"
-  "cubespa.out" 1703960855 2637 526416a2f5c0ae8d711f7d0c3abc7404 "pdflatex"
-  "cubespa.tex" 1703960853 28441 bbbf3938318dc829c5b2b34aaf923c22 ""
-  "cubespa.toc" 1703960855 1513 e92564b59445f10356fd20b2fbd63cad "pdflatex"
+  "cubespa.aux" 1703971615 11398 4f803ff7bfc65f1ad37549639242ff1a "pdflatex"
+  "cubespa.ind" 1703971612 6535 474b8b11331c7bc135c39cd37e92144a "makeindex cubespa.idx"
+  "cubespa.out" 1703971615 2877 dffcbe2fa801ded5895fb40fdcfb9cc1 "pdflatex"
+  "cubespa.tex" 1703971611 66789 b757c87ba15e938f52e618471352ae6d ""
+  "cubespa.toc" 1703971615 1670 16e9676b9f9c92e79db9b85856216a9b "pdflatex"
   "example_pvd.png" 1703960248 43089 7dffc41923848c52decb3d63191f592f ""
   "rgb_faint.png" 1703959025 137374 50c950eac0d5a2799ed5006b483fc285 ""
   "rgb_nonorm.png" 1703958966 118732 c3b4af0ae4b5332d174593cb6fe36831 ""
   "rgb_norm.png" 1703959016 113475 3a25a4889470f8926dce10e3354321f5 ""
   "rgb_overlay.png" 1703960500 20683 7143d9e2b655fa57d0c20250a08c59fa ""
   "sphinx.sty" 1657784162 12780 919e6ba449302e2597e7722681a087c6 ""
-  "sphinxhighlight.sty" 1703960852 6742 ef996596562a9a2908d62b245f9fe7bd ""
+  "sphinxhighlight.sty" 1703971611 6742 ef996596562a9a2908d62b245f9fe7bd ""
   "sphinxlatexadmonitions.sty" 1657784162 6238 2d867d769abf3f72abc17ef52adff78b ""
   "sphinxlatexcontainers.sty" 1657784162 901 d3a3a1b7b2547f47ade2499350b5c420 ""
   "sphinxlatexgraphics.sty" 1657784162 4840 a9578332b6f3b35e198751fb632c9b79 ""
@@ -169,7 +170,7 @@
   "sphinxlatexstyletext.sty" 1657784162 6177 c18841ce3fafc366cd3b145f8faa4c37 ""
   "sphinxlatextables.sty" 1657784162 21848 2827eb0b11b99b185a8b77317d3e131c ""
   "sphinxmanual.cls" 1657784162 4241 7b0d7a37df7b5715fb0dbd585c52ecdb ""
-  "sphinxmessages.sty" 1703960853 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1703971611 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxoptionsgeometry.sty" 1657784162 2061 47bb34b8ed8a78823eb0c886abfb9f4d ""
   "sphinxoptionshyperref.sty" 1657784162 1094 79beb8b8a3f10784f8cce804e0f9d3aa ""
   "sphinxpackagefootnote.sty" 1657784162 15217 dd26fe418b6fb1b26b18f042a7f43d40 ""

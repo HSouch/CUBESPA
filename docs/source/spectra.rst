@@ -14,3 +14,15 @@ as a shaded grey region.
 .. image:: plots/blob_spectra.png
   :width: 800
   :alt: Alternative text
+
+
+
+.. automodule:: cubespa.plotting.spectra_plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: cubespa.spectra
+   :members:
+   :undoc-members:
+   :show-inheritance:

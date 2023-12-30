@@ -1,7 +1,7 @@
 This is makeindex, version 2.17 [TeX Live 2023] (kpathsea + Thai support).
 Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file cubespa.idx....done (11 entries accepted, 0 rejected).
-Sorting entries....done (42 comparisons).
-Generating output file cubespa.ind....done (36 lines written, 0 warnings).
+Scanning input file cubespa.idx....done (79 entries accepted, 0 rejected).
+Sorting entries....done (505 comparisons).
+Generating output file cubespa.ind....done (144 lines written, 0 warnings).
 Output written in cubespa.ind.
 Transcript written in cubespa.ilg.

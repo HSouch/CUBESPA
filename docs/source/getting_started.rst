@@ -110,11 +110,3 @@ galaxy, I would create it with the following.
 The additional parameter ``show_bbox`` will generate a plot to show you where the cutout falls on the parent
 image. This is helpful for more closely aligning the cutouts.
 
-
-Reference/API
--------------
-
-.. automodule:: cubespa.cubespa
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -98,7 +98,7 @@ To begin using CubeSPA, create a \sphinxcode{\sphinxupquote{cubespa.CubeSPA}} ob
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{filename} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{path/to/cube.fits}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{cube\PYGZus{}fn}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
@@ -136,7 +136,7 @@ To begin using CubeSPA, create a \sphinxcode{\sphinxupquote{cubespa.CubeSPA}} ob
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{cubespa}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{filename} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{path/to/cube.fits}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{cube\PYGZus{}fn}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
@@ -147,7 +147,7 @@ moment maps loaded, you can also create a bounding box around “valid” data b
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{filename} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{path/to/cube.fits}\PYG{l+s+s2}{\PYGZdq{}}
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{mommaps} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{path/to/maskmoment}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{cube\PYGZus{}fn}\PYG{p}{,} \PYG{n}{mom\PYGZus{}maps}\PYG{o}{=}\PYG{n}{mommaps}\PYG{p}{,} \PYG{n}{limits}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{auto}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{cubespa}\PYG{o}{.}\PYG{n}{CubeSPA}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,} \PYG{n}{mom\PYGZus{}maps}\PYG{o}{=}\PYG{n}{mommaps}\PYG{p}{,} \PYG{n}{limits}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{auto}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -166,7 +166,8 @@ For example, if you had an H\sphinxhyphen{}alpha map of your galaxy, you might l
 \end{sphinxVerbatim}
 
 \sphinxAtStartPar
-However, this map might not be aligned with your cube. CubeSPA uses the \sphinxhref{https://reproject.readthedocs.io/en/stable/}{reproject}
+However, this map might not be aligned with your cube. CubeSPA uses the
+\sphinxhref{https://reproject.readthedocs.io/en/stable/}{reproject}
 package to properly align maps together. Once you have your \sphinxcode{\sphinxupquote{DataSet}} object, you can align it with
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -262,66 +263,6 @@ The additional parameter \sphinxcode{\sphinxupquote{show\_bbox}} will generate a
 image. This is helpful for more closely aligning the cutouts.
 
 
-\subsection{Reference/API}
-\label{\detokenize{getting_started:module-cubespa.cubespa}}\label{\detokenize{getting_started:reference-api}}\index{module@\spxentry{module}!cubespa.cubespa@\spxentry{cubespa.cubespa}}\index{cubespa.cubespa@\spxentry{cubespa.cubespa}!module@\spxentry{module}}\index{CubeSPA (class in cubespa.cubespa)@\spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.CubeSPA}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.cubespa.}}\sphinxbfcode{\sphinxupquote{CubeSPA}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{mom\_maps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{additional\_maps}\DUrole{o}{=}\DUrole{default_value}{{[}{]}}}, \emph{\DUrole{n}{center}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{position\_angle}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{eps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{limits}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{plot\_dir}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
-\pysigstopsignatures
-\sphinxAtStartPar
-Bases: \sphinxcode{\sphinxupquote{object}}
-\index{create\_spectra() (cubespa.cubespa.CubeSPA method)@\spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.CubeSPA.create_spectra}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{create\_spectra}}}{\emph{\DUrole{n}{position}}, \emph{\DUrole{n}{size}}, \emph{\DUrole{n}{return\_products}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{plot}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
-\pysigstopsignatures
-\end{fulllineitems}
-
-\index{load\_dir() (cubespa.cubespa.CubeSPA method)@\spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.CubeSPA.load_dir}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{load\_dir}}}{}{}
-\pysigstopsignatures
-\end{fulllineitems}
-
-\index{plot\_moment\_maps() (cubespa.cubespa.CubeSPA method)@\spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.CubeSPA.plot_moment_maps}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_moment\_maps}}}{\emph{\DUrole{n}{use\_limits}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{o}{*}\DUrole{n}{kwargs}}}{}
-\pysigstopsignatures
-\end{fulllineitems}
-
-\index{velocities\_from\_wcs() (cubespa.cubespa.CubeSPA method)@\spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.CubeSPA.velocities_from_wcs}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{velocities\_from\_wcs}}}{}{}
-\pysigstopsignatures
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-\index{check\_kwarg() (in module cubespa.cubespa)@\spxentry{check\_kwarg()}\spxextra{in module cubespa.cubespa}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{getting_started:cubespa.cubespa.check_kwarg}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.cubespa.}}\sphinxbfcode{\sphinxupquote{check\_kwarg}}}{\emph{\DUrole{n}{key}}, \emph{\DUrole{n}{default}}, \emph{\DUrole{n}{kwargs}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{dict}}}{}
-\pysigstopsignatures
-\end{fulllineitems}
-
-
-
 \chapter{2D Analysis}
 \label{\detokenize{index:d-analysis}}
 \sphinxstepscope
@@ -361,12 +302,12 @@ set \sphinxcode{\sphinxupquote{use\_limits}} to \sphinxcode{\sphinxupquote{False
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.mommap\_plots.}}\sphinxbfcode{\sphinxupquote{moment\_map\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{use\_limits}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-\_summary\_
+Generate moment map plots.
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{getting_started:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} The input CubeSPA object, with valid moment maps loaded.
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} The input CubeSPA object, with valid moment maps loaded.
 
 \item {} 
 \sphinxAtStartPar
@@ -449,6 +390,111 @@ space. CubeSPA uses sigma clipping to determine an RMS of the spectra, and then 
 as a shaded grey region.
 
 \noindent\sphinxincludegraphics[width=800\sphinxpxdimen]{{blob_spectra}.png}
+\phantomsection\label{\detokenize{spectra:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.plotting.spectra_plots.plot_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{plot\_spectra}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{aper}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{spectra\_plot() (in module cubespa.plotting.spectra\_plots)@\spxentry{spectra\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.plotting.spectra_plots.spectra_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{spectra\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{aper}}, \emph{\DUrole{n}{spectrum}}}{}
+\pysigstopsignatures\begin{description}
+\sphinxlineitem{Create a plot showing both the image with overlaid spectra, as well as the spectrum with}
+\sphinxAtStartPar
+RMS levels shown.
+
+\end{description}
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} CubeSPA object.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{aper}} (\sphinxstyleliteralemphasis{\sphinxupquote{photutils.aperture}}) \textendash{} Input aperture, generated using cubespa.spectra
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{spectrum}} (\sphinxstyleliteralemphasis{\sphinxupquote{\_type\_}}) \textendash{} \_description\_
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{spectra:module-cubespa.spectra}}\index{module@\spxentry{module}!cubespa.spectra@\spxentry{cubespa.spectra}}\index{cubespa.spectra@\spxentry{cubespa.spectra}!module@\spxentry{module}}\index{analyze\_spectra() (in module cubespa.spectra)@\spxentry{analyze\_spectra()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.spectra.analyze_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{analyze\_spectra}}}{\emph{\DUrole{n}{spec}}, \emph{\DUrole{n}{sigma}\DUrole{o}{=}\DUrole{default_value}{2}}, \emph{\DUrole{n}{cmin}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{create\_aperture() (in module cubespa.spectra)@\spxentry{create\_aperture()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.spectra.create_aperture}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{create\_aperture}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{position}}, \emph{\DUrole{n}{shape}}, \emph{\DUrole{n}{aper\_type}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}elliptical\textquotesingle{}}}, \emph{\DUrole{n}{plot}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate photutils aperture of desired type, position, and shape.
+\begin{quote}\begin{description}
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Photutils aperture
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+photutils.aperture
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_spectra() (in module cubespa.spectra)@\spxentry{get\_spectra()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.spectra.get_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{get\_spectra}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{aper}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Get the spectra through a datacube at the position and size of a given aperture.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cube}} (\sphinxstyleliteralemphasis{\sphinxupquote{ndarray}}) \textendash{} \_description\_
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{aper}} (\sphinxstyleliteralemphasis{\sphinxupquote{photutils aperture}}) \textendash{} Elliptical or circular aperture/annulus.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\_description\_
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+\_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \sphinxstepscope
 
@@ -486,7 +532,639 @@ blue\sphinxhyphen{}shifted velocity channels, consistent with what is seen in th
 \label{\detokenize{modeling:generating-fitting-velocity-models}}\label{\detokenize{modeling::doc}}
 
 \chapter{Indices and tables}
-\label{\detokenize{index:indices-and-tables}}\begin{itemize}
+\label{\detokenize{index:indices-and-tables}}
+\sphinxstepscope
+
+
+\section{Module Documentation}
+\label{\detokenize{modules:module-documentation}}\label{\detokenize{modules::doc}}
+
+\subsection{Utilities}
+\label{\detokenize{modules:module-cubespa.channel_maps}}\label{\detokenize{modules:utilities}}\index{module@\spxentry{module}!cubespa.channel\_maps@\spxentry{cubespa.channel\_maps}}\index{cubespa.channel\_maps@\spxentry{cubespa.channel\_maps}!module@\spxentry{module}}\phantomsection\label{\detokenize{modules:module-cubespa.cubespa}}\index{module@\spxentry{module}!cubespa.cubespa@\spxentry{cubespa.cubespa}}\index{cubespa.cubespa@\spxentry{cubespa.cubespa}!module@\spxentry{module}}\index{CubeSPA (class in cubespa.cubespa)@\spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.cubespa.}}\sphinxbfcode{\sphinxupquote{CubeSPA}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{mom\_maps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{additional\_maps}\DUrole{o}{=}\DUrole{default_value}{{[}{]}}}, \emph{\DUrole{n}{center}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{position\_angle}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{eps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{limits}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{plot\_dir}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{object}}
+
+\sphinxAtStartPar
+Base input class for a CubeSPA object
+\index{create\_spectra() (cubespa.cubespa.CubeSPA method)@\spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA.create_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{create\_spectra}}}{\emph{\DUrole{n}{position}}, \emph{\DUrole{n}{size}}, \emph{\DUrole{n}{return\_products}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{plot}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{load\_dir() (cubespa.cubespa.CubeSPA method)@\spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA.load_dir}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{load\_dir}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{plot\_moment\_maps() (cubespa.cubespa.CubeSPA method)@\spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA.plot_moment_maps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{plot\_moment\_maps}}}{\emph{\DUrole{n}{use\_limits}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{velocities\_from\_wcs() (cubespa.cubespa.CubeSPA method)@\spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA.velocities_from_wcs}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{velocities\_from\_wcs}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.data}}\index{module@\spxentry{module}!cubespa.data@\spxentry{cubespa.data}}\index{cubespa.data@\spxentry{cubespa.data}!module@\spxentry{module}}\index{DataSet (class in cubespa.data)@\spxentry{DataSet}\spxextra{class in cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.DataSet}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{DataSet}}}{\emph{\DUrole{n}{data}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{wcs}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{header}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{label}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{object}}
+
+\end{fulllineitems}
+
+\index{MomentMaps (class in cubespa.data)@\spxentry{MomentMaps}\spxextra{class in cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.MomentMaps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{MomentMaps}}}{\emph{\DUrole{n}{mom0}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{mom1}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{mom2}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{object}}
+
+\end{fulllineitems}
+
+\index{RGBImage (class in cubespa.data)@\spxentry{RGBImage}\spxextra{class in cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.RGBImage}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{RGBImage}}}{\emph{\DUrole{n}{data}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{wcs}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{header}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{label}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: {\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{DataSet}}}}}
+
+\end{fulllineitems}
+
+\index{gen\_cutout() (in module cubespa.data)@\spxentry{gen\_cutout()}\spxextra{in module cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.gen_cutout}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{gen\_cutout}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{cent}}, \emph{\DUrole{n}{size}}, \emph{\DUrole{n}{show\_bbox}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{handle\_data() (in module cubespa.data)@\spxentry{handle\_data()}\spxextra{in module cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.handle_data}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{handle\_data}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{handler}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
+\pysigstopsignatures\begin{description}
+\sphinxlineitem{Handle incoming data for the CubeSPA object.}
+\sphinxAtStartPar
+If not a string, CubeSPA will assume it is
+
+\end{description}
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{data}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{ or }}\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.DataSet}}) \textendash{} Incoming data. If str, CubeSPA will automatically load it in.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{handler}} (\sphinxstyleliteralemphasis{\sphinxupquote{method}}) \textendash{} Method to handle data, either set to load\_data or load\_moment\_maps
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{data\_index}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Index to find data in. Defaults to 0.
+
+\end{itemize}
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+\_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{load\_data() (in module cubespa.data)@\spxentry{load\_data()}\spxextra{in module cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.load_data}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{load\_data}}}{\emph{\DUrole{n}{filename}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{rgb\_index}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{label}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{load\_moment\_maps() (in module cubespa.data)@\spxentry{load\_moment\_maps()}\spxextra{in module cubespa.data}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.data.load_moment_maps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{load\_moment\_maps}}}{\emph{\DUrole{n}{topdir}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.moment_maps}}\index{module@\spxentry{module}!cubespa.moment\_maps@\spxentry{cubespa.moment\_maps}}\index{cubespa.moment\_maps@\spxentry{cubespa.moment\_maps}!module@\spxentry{module}}\phantomsection\label{\detokenize{modules:module-cubespa.overlays}}\index{module@\spxentry{module}!cubespa.overlays@\spxentry{cubespa.overlays}}\index{cubespa.overlays@\spxentry{cubespa.overlays}!module@\spxentry{module}}\index{align\_image() (in module cubespa.overlays)@\spxentry{align\_image()}\spxextra{in module cubespa.overlays}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.overlays.align_image}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.overlays.}}\sphinxbfcode{\sphinxupquote{align\_image}}}{\emph{\DUrole{n}{input\_data}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{{\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{DataSet}}}}}, \emph{\DUrole{n}{data\_to\_align}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{{\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{DataSet}}}}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.pvds}}\index{module@\spxentry{module}!cubespa.pvds@\spxentry{cubespa.pvds}}\index{cubespa.pvds@\spxentry{cubespa.pvds}!module@\spxentry{module}}\index{gen\_pvd() (in module cubespa.pvds)@\spxentry{gen\_pvd()}\spxextra{in module cubespa.pvds}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.pvds.gen_pvd}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.pvds.}}\sphinxbfcode{\sphinxupquote{gen\_pvd}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{center}}, \emph{\DUrole{n}{length}\DUrole{o}{=}\DUrole{default_value}{50}}, \emph{\DUrole{n}{pa}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{width}\DUrole{o}{=}\DUrole{default_value}{10}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.spectra}}\index{module@\spxentry{module}!cubespa.spectra@\spxentry{cubespa.spectra}}\index{cubespa.spectra@\spxentry{cubespa.spectra}!module@\spxentry{module}}\index{analyze\_spectra() (in module cubespa.spectra)@\spxentry{analyze\_spectra()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.spectra.analyze_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{analyze\_spectra}}}{\emph{\DUrole{n}{spec}}, \emph{\DUrole{n}{sigma}\DUrole{o}{=}\DUrole{default_value}{2}}, \emph{\DUrole{n}{cmin}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{cmax}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{create\_aperture() (in module cubespa.spectra)@\spxentry{create\_aperture()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.spectra.create_aperture}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{create\_aperture}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{position}}, \emph{\DUrole{n}{shape}}, \emph{\DUrole{n}{aper\_type}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}elliptical\textquotesingle{}}}, \emph{\DUrole{n}{plot}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate photutils aperture of desired type, position, and shape.
+\begin{quote}\begin{description}
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Photutils aperture
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+photutils.aperture
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_spectra() (in module cubespa.spectra)@\spxentry{get\_spectra()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.spectra.get_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{get\_spectra}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{aper}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Get the spectra through a datacube at the position and size of a given aperture.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cube}} (\sphinxstyleliteralemphasis{\sphinxupquote{ndarray}}) \textendash{} \_description\_
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{aper}} (\sphinxstyleliteralemphasis{\sphinxupquote{photutils aperture}}) \textendash{} Elliptical or circular aperture/annulus.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\_description\_
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+\_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.utils}}\index{module@\spxentry{module}!cubespa.utils@\spxentry{cubespa.utils}}\index{cubespa.utils@\spxentry{cubespa.utils}!module@\spxentry{module}}\index{RMS() (in module cubespa.utils)@\spxentry{RMS()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.RMS}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{RMS}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{sigclip}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{beam\_area() (in module cubespa.utils)@\spxentry{beam\_area()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.beam_area}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{beam\_area}}}{\emph{\DUrole{n}{bmaj}}, \emph{\DUrole{n}{bmin}}}{}
+\pysigstopsignatures\begin{description}
+\sphinxlineitem{Get the area of the beam based on a standard elliptical Gaussian beam with major and}
+\sphinxAtStartPar
+minor axes bmaj and bmin.
+
+\end{description}
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{bmaj}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Major axis of beam
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{bmin}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} Minor axis of beam
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The beam area.
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+float
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{bounds\_from\_moment\_map() (in module cubespa.utils)@\spxentry{bounds\_from\_moment\_map()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.bounds_from_moment_map}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{bounds\_from\_moment\_map}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{padding}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{centre\_coords() (in module cubespa.utils)@\spxentry{centre\_coords()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.centre_coords}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{centre\_coords}}}{\emph{\DUrole{n}{input\_wcs}}, \emph{\DUrole{n}{ra}}, \emph{\DUrole{n}{dec}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{check\_and\_make\_dir() (in module cubespa.utils)@\spxentry{check\_and\_make\_dir()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.check_and_make_dir}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{check\_and\_make\_dir}}}{\emph{\DUrole{n}{directory}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{check\_kwarg() (in module cubespa.utils)@\spxentry{check\_kwarg()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.check_kwarg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{check\_kwarg}}}{\emph{\DUrole{n}{key}}, \emph{\DUrole{n}{default}}, \emph{\DUrole{n}{kwargs}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{dict}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{estimate\_rms() (in module cubespa.utils)@\spxentry{estimate\_rms()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.estimate_rms}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{estimate\_rms}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{channel\_min}}, \emph{\DUrole{n}{channel\_max}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{im\_bounds() (in module cubespa.utils)@\spxentry{im\_bounds()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.im_bounds}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{im\_bounds}}}{\emph{\DUrole{n}{stats}}, \emph{\DUrole{n}{sigma}\DUrole{o}{=}\DUrole{default_value}{1}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{imstat() (in module cubespa.utils)@\spxentry{imstat()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.imstat}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{imstat}}}{\emph{\DUrole{n}{a}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Simple tool to return statistics for a given array.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{a}} (\sphinxstyleliteralemphasis{\sphinxupquote{ndarray}}) \textendash{} Input array to get statistics.
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\_description\_
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+\_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{line\_corners() (in module cubespa.utils)@\spxentry{line\_corners()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.line_corners}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{line\_corners}}}{\emph{\DUrole{n}{x0}}, \emph{\DUrole{n}{y0}}, \emph{\DUrole{n}{w}}, \emph{\DUrole{n}{L}}, \emph{\DUrole{n}{theta}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{line\_endpoints() (in module cubespa.utils)@\spxentry{line\_endpoints()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.line_endpoints}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{line\_endpoints}}}{\emph{\DUrole{n}{x0}}, \emph{\DUrole{n}{y0}}, \emph{\DUrole{n}{L}}, \emph{\DUrole{n}{theta}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{match\_wcs\_axes() (in module cubespa.utils)@\spxentry{match\_wcs\_axes()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.match_wcs_axes}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{match\_wcs\_axes}}}{\emph{\DUrole{n}{wcs1}}, \emph{\DUrole{n}{wcs2}}}{}
+\pysigstopsignatures\begin{description}
+\sphinxlineitem{Match the axes in WCS axes (mostly for image alignment with cubes and images).}
+\sphinxAtStartPar
+This method assumes that the ra/dec axes are always at indices 0 and 1.
+
+\end{description}
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wcs1}} (\sphinxstyleliteralemphasis{\sphinxupquote{astropy.wcs}}) \textendash{} WCS A
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{wcs2}} (\sphinxstyleliteralemphasis{\sphinxupquote{astropy.wcs}}) \textendash{} WCS B
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Both WCS objects.
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+\_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{normalize() (in module cubespa.utils)@\spxentry{normalize()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.normalize}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{normalize}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{clip\_low}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{clip\_high}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{stretch}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{normalized\_rgb\_image() (in module cubespa.utils)@\spxentry{normalized\_rgb\_image()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.normalized_rgb_image}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{normalized\_rgb\_image}}}{\emph{\DUrole{n}{image}}, \emph{\DUrole{n}{sigma}\DUrole{o}{=}\DUrole{default_value}{1}}, \emph{\DUrole{n}{stretch}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate a properly formatted RGB image from a 3xmxn input.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{image}} (\sphinxstyleliteralemphasis{\sphinxupquote{ndarray}}) \textendash{} 3 x m x n input image.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{sigma}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}\sphinxstyleliteralemphasis{\sphinxupquote{, or }}\sphinxstyleliteralemphasis{\sphinxupquote{array optional}}) \textendash{} Sigma levels to adjust stretches and clips. Defaults to 1.
+int: sigma for all 3 RGB images
+tuple: All 3 images clipped to (sigma{[}0{]}, sigma{[}1{]})
+Array of len(3): R,G,B images clipped to sigma{[}0{]}, sigma{[}1{]}, sigma{[}2{]}, respectively.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{stretch}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Type of stretch to apply. Defaults to None.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+The properly transposed, stretched and clipped RGB image.
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+ndarray
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{recommended\_figsize() (in module cubespa.utils)@\spxentry{recommended\_figsize()}\spxextra{in module cubespa.utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.utils.recommended_figsize}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.utils.}}\sphinxbfcode{\sphinxupquote{recommended\_figsize}}}{\emph{\DUrole{n}{a}}, \emph{\DUrole{n}{width}\DUrole{o}{=}\DUrole{default_value}{8}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+
+\subsection{Plotting}
+\label{\detokenize{modules:module-cubespa.plotting.channel_map_plots}}\label{\detokenize{modules:plotting}}\index{module@\spxentry{module}!cubespa.plotting.channel\_map\_plots@\spxentry{cubespa.plotting.channel\_map\_plots}}\index{cubespa.plotting.channel\_map\_plots@\spxentry{cubespa.plotting.channel\_map\_plots}!module@\spxentry{module}}\index{channel\_maps() (in module cubespa.plotting.channel\_map\_plots)@\spxentry{channel\_maps()}\spxextra{in module cubespa.plotting.channel\_map\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.channel_map_plots.channel_maps}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.channel\_map\_plots.}}\sphinxbfcode{\sphinxupquote{channel\_maps}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{n\_chan}\DUrole{o}{=}\DUrole{default_value}{25}}, \emph{\DUrole{n}{limits}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.plotting.mommap_plots}}\index{module@\spxentry{module}!cubespa.plotting.mommap\_plots@\spxentry{cubespa.plotting.mommap\_plots}}\index{cubespa.plotting.mommap\_plots@\spxentry{cubespa.plotting.mommap\_plots}!module@\spxentry{module}}\index{moment\_map\_plot() (in module cubespa.plotting.mommap\_plots)@\spxentry{moment\_map\_plot()}\spxextra{in module cubespa.plotting.mommap\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.mommap_plots.moment_map_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.mommap\_plots.}}\sphinxbfcode{\sphinxupquote{moment\_map\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{use\_limits}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate moment map plots.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} The input CubeSPA object, with valid moment maps loaded.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{filename}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Output filename, in which the plot is just shown instead of saved. Defaults to None.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{use\_limits}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} 
+\sphinxAtStartPar
+Whether or not to use limits from the CubeSPA object.
+
+\sphinxAtStartPar
+It is a good idea to set to False for cutout objects, as their limits will be relative to the initial CubeSPA object,
+and their desired limits will be the entire array. Defaults to True.
+
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.plotting.overlay_plots}}\index{module@\spxentry{module}!cubespa.plotting.overlay\_plots@\spxentry{cubespa.plotting.overlay\_plots}}\index{cubespa.plotting.overlay\_plots@\spxentry{cubespa.plotting.overlay\_plots}!module@\spxentry{module}}\index{overlay\_plot() (in module cubespa.plotting.overlay\_plots)@\spxentry{overlay\_plot()}\spxextra{in module cubespa.plotting.overlay\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.overlay_plots.overlay_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.overlay\_plots.}}\sphinxbfcode{\sphinxupquote{overlay\_plot}}}{\emph{\DUrole{n}{img\_obj}}, \emph{\DUrole{n}{overlay\_obj}}, \emph{\DUrole{n}{lims}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{levels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{colors}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{log\_img}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{cmap}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}Greys\textquotesingle{}}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{rgb\_overlay() (in module cubespa.plotting.overlay\_plots)@\spxentry{rgb\_overlay()}\spxextra{in module cubespa.plotting.overlay\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.overlay_plots.rgb_overlay}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.overlay\_plots.}}\sphinxbfcode{\sphinxupquote{rgb\_overlay}}}{\emph{\DUrole{n}{rgb\_img}}, \emph{\DUrole{n}{overlay\_obj}}, \emph{\DUrole{n}{lims}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{levels}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{colors}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{filename}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.spectra_plots.plot_spectra}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{plot\_spectra}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{aper}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{spectra\_plot() (in module cubespa.plotting.spectra\_plots)@\spxentry{spectra\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.spectra_plots.spectra_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{spectra\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{aper}}, \emph{\DUrole{n}{spectrum}}}{}
+\pysigstopsignatures\begin{description}
+\sphinxlineitem{Create a plot showing both the image with overlaid spectra, as well as the spectrum with}
+\sphinxAtStartPar
+RMS levels shown.
+
+\end{description}
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} CubeSPA object.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{aper}} (\sphinxstyleliteralemphasis{\sphinxupquote{photutils.aperture}}) \textendash{} Input aperture, generated using cubespa.spectra
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{spectrum}} (\sphinxstyleliteralemphasis{\sphinxupquote{\_type\_}}) \textendash{} \_description\_
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\phantomsection\label{\detokenize{modules:module-cubespa.plotting.util_plots}}\index{module@\spxentry{module}!cubespa.plotting.util\_plots@\spxentry{cubespa.plotting.util\_plots}}\index{cubespa.plotting.util\_plots@\spxentry{cubespa.plotting.util\_plots}!module@\spxentry{module}}\index{limit\_plot() (in module cubespa.plotting.util\_plots)@\spxentry{limit\_plot()}\spxextra{in module cubespa.plotting.util\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.util_plots.limit_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.util\_plots.}}\sphinxbfcode{\sphinxupquote{limit\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{plot\_bbox() (in module cubespa.plotting.util\_plots)@\spxentry{plot\_bbox()}\spxextra{in module cubespa.plotting.util\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.util_plots.plot_bbox}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.util\_plots.}}\sphinxbfcode{\sphinxupquote{plot\_bbox}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{lims}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{plot\_rgb() (in module cubespa.plotting.util\_plots)@\spxentry{plot\_rgb()}\spxextra{in module cubespa.plotting.util\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.util_plots.plot_rgb}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.util\_plots.}}\sphinxbfcode{\sphinxupquote{plot\_rgb}}}{\emph{\DUrole{n}{rgb}}, \emph{\DUrole{n}{lims}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{outname}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Plot an RGB image using matplotlib
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{rgb}} (\sphinxstyleliteralemphasis{\sphinxupquote{nxmx3 array}}) \textendash{} RGB image formatted for matplotlib
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{lims}} (\sphinxstyleliteralemphasis{\sphinxupquote{arr}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} x and y limits for plotting. Defaults to None.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{outname}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Output filename. If not, show plot instead of
+save figure. Defaults to None.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\begin{itemize}
 \item {} 
 \sphinxAtStartPar
 \DUrole{xref,std,std-ref}{genindex}
@@ -506,8 +1184,19 @@ blue\sphinxhyphen{}shifted velocity channels, consistent with what is seen in th
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{c}
-\item\relax\sphinxstyleindexentry{cubespa.cubespa}\sphinxstyleindexpageref{getting_started:\detokenize{module-cubespa.cubespa}}
-\item\relax\sphinxstyleindexentry{cubespa.plotting.mommap\_plots}\sphinxstyleindexpageref{momentmaps:\detokenize{module-cubespa.plotting.mommap_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.channel\_maps}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.channel_maps}}
+\item\relax\sphinxstyleindexentry{cubespa.cubespa}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.cubespa}}
+\item\relax\sphinxstyleindexentry{cubespa.data}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.data}}
+\item\relax\sphinxstyleindexentry{cubespa.moment\_maps}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.moment_maps}}
+\item\relax\sphinxstyleindexentry{cubespa.overlays}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.overlays}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.channel\_map\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.channel_map_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.mommap\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.mommap_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.overlay\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.overlay_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.spectra\_plots}\sphinxstyleindexpageref{spectra:\detokenize{module-cubespa.plotting.spectra_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.util\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.util_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.pvds}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.pvds}}
+\item\relax\sphinxstyleindexentry{cubespa.spectra}\sphinxstyleindexpageref{spectra:\detokenize{module-cubespa.spectra}}
+\item\relax\sphinxstyleindexentry{cubespa.utils}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.utils}}
 \end{sphinxtheindex}
 
 \renewcommand{\indexname}{Index}
