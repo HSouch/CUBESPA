@@ -11,7 +11,7 @@ To begin using CubeSPA, create a ``cubespa.CubeSPA`` object with the filename fo
     
     >>> import cubespa
     >>> filename = "path/to/cube.fits"
-    >>> c = cubespa.CubeSPA(cube_fn)
+    >>> c = cubespa.CubeSPA(filename)
 
 You can load in moment maps (assuming the convention from  `maskmoment <https://github.com/tonywong94/maskmoment>`_ ) with the following. If your maskmoment output is 
 ``path/to/maskmoment.mom0.fits.gz``, for the moment 0 map (.mom1, .mom2 for the others), these are loaded as follows below. With
@@ -19,7 +19,7 @@ moment maps loaded, you can also create a bounding box around "valid" data by ca
 
     >>> filename = "path/to/cube.fits"
     >>> mommaps = "path/to/maskmoment"
-    >>> c = cubespa.CubeSPA(cube_fn, mom_maps=mommaps, limits="auto")
+    >>> c = cubespa.CubeSPA(filename, mom_maps=mommaps, limits="auto")
 
 Additional data
 ---------------
