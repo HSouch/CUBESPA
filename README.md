@@ -1,3 +1,3 @@
 # CUBE SPectral Analysis
 
-Take your datacubes to the spa for complete analysis.
+Fully-featured, aesthetically pleasing 2D and 3D analysis of astronomical datacubes. 
