@@ -4,7 +4,7 @@ import numpy as np
 
 
 def moment_map_plot(cubespa_obj, filename = None, use_limits=True, **kwargs):
-    """_summary_
+    """ Generate moment map plots.
 
     Args:
         cubespa_obj (cubespa.CubeSPA): The input CubeSPA object, with valid moment maps loaded.

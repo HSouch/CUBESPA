@@ -11,7 +11,7 @@ To begin using CubeSPA, create a ``cubespa.CubeSPA`` object with the filename fo
     
     >>> import cubespa
     >>> filename = "path/to/cube.fits"
-    >>> c = cubespa.CubeSPA(cube_fn)
+    >>> c = cubespa.CubeSPA(filename)
 
 You can load in moment maps (assuming the convention from  `maskmoment <https://github.com/tonywong94/maskmoment>`_ ) with the following. If your maskmoment output is 
 ``path/to/maskmoment.mom0.fits.gz``, for the moment 0 map (.mom1, .mom2 for the others), these are loaded as follows below. With
@@ -19,7 +19,7 @@ moment maps loaded, you can also create a bounding box around "valid" data by ca
 
     >>> filename = "path/to/cube.fits"
     >>> mommaps = "path/to/maskmoment"
-    >>> c = cubespa.CubeSPA(cube_fn, mom_maps=mommaps, limits="auto")
+    >>> c = cubespa.CubeSPA(filename, mom_maps=mommaps, limits="auto")
 
 Additional data
 ---------------
@@ -32,7 +32,8 @@ For example, if you had an H-alpha map of your galaxy, you might load it as foll
 
 >>> halpha = cubespa.load_data(halpha_fn, label="HALPHA")
 
-However, this map might not be aligned with your cube. CubeSPA uses the `reproject <https://reproject.readthedocs.io/en/stable/>`_
+However, this map might not be aligned with your cube. CubeSPA uses the 
+`reproject <https://reproject.readthedocs.io/en/stable/>`_
 package to properly align maps together. Once you have your ``DataSet`` object, you can align it with
 
 >>> halpha_interp = cubespa.align_image(c.mom_maps.mom0, halpha)

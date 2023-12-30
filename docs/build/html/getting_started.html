@@ -44,7 +44,7 @@ in both single frame and RGB image form.</p>
 <p>To begin using CubeSPA, create a <code class="docutils literal notranslate"><span class="pre">cubespa.CubeSPA</span></code> object with the filename for your cube in the following way:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cubespa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;path/to/cube.fits&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">cube_fn</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can load in moment maps (assuming the convention from  <a class="reference external" href="https://github.com/tonywong94/maskmoment">maskmoment</a> ) with the following. If your maskmoment output is
@@ -52,7 +52,7 @@ in both single frame and RGB image form.</p>
 moment maps loaded, you can also create a bounding box around “valid” data by calling the <code class="docutils literal notranslate"><span class="pre">limits</span> <span class="pre">=</span> <span class="pre">&quot;auto&quot;</span></code> feature.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;path/to/cube.fits&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mommaps</span> <span class="o">=</span> <span class="s2">&quot;path/to/maskmoment&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">cube_fn</span><span class="p">,</span> <span class="n">mom_maps</span><span class="o">=</span><span class="n">mommaps</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">CubeSPA</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mom_maps</span><span class="o">=</span><span class="n">mommaps</span><span class="p">,</span> <span class="n">limits</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -65,7 +65,8 @@ the wcs and header information for easier access.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">halpha</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">halpha_fn</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;HALPHA&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>However, this map might not be aligned with your cube. CubeSPA uses the <a class="reference external" href="https://reproject.readthedocs.io/en/stable/">reproject</a>
+<p>However, this map might not be aligned with your cube. CubeSPA uses the
+<a class="reference external" href="https://reproject.readthedocs.io/en/stable/">reproject</a>
 package to properly align maps together. Once you have your <code class="docutils literal notranslate"><span class="pre">DataSet</span></code> object, you can align it with</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">halpha_interp</span> <span class="o">=</span> <span class="n">cubespa</span><span class="o">.</span><span class="n">align_image</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">mom_maps</span><span class="o">.</span><span class="n">mom0</span><span class="p">,</span> <span class="n">halpha</span><span class="p">)</span>
 </pre></div>
@@ -132,6 +133,7 @@ image. This is helpful for more closely aligning the cutouts.</p>
 <dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cubespa.cubespa.</span></span><span class="sig-name descname"><span class="pre">CubeSPA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mom_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_maps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base input class for a CubeSPA object</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.create_spectra">
 <span class="sig-name descname"><span class="pre">create_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_products</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.create_spectra" title="Permalink to this definition">¶</a></dt>
@@ -144,7 +146,7 @@ image. This is helpful for more closely aligning the cutouts.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cubespa.cubespa.CubeSPA.plot_moment_maps">
-<span class="sig-name descname"><span class="pre">plot_moment_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.plot_moment_maps" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_moment_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.CubeSPA.plot_moment_maps" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -153,11 +155,6 @@ image. This is helpful for more closely aligning the cutouts.</p>
 <dd></dd></dl>
 
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cubespa.cubespa.check_kwarg">
-<span class="sig-prename descclassname"><span class="pre">cubespa.cubespa.</span></span><span class="sig-name descname"><span class="pre">check_kwarg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.cubespa.check_kwarg" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </section>
 </section>

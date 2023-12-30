@@ -18,7 +18,7 @@ To use **CubeSPA**, install it using
 To begin using CubeSPA, create a ``cubespa.CubeSPA`` object with the filename for your cube in the following way:
 
     >>> filename = "path/to/cube.fits"
-    >>> c = cubespa.CubeSPA(cube_fn)
+    >>> c = cubespa.CubeSPA(filename)
 
 You can load in moment maps (assuming the convention from  `maskmoment <https://github.com/tonywong94/maskmoment>`_ ) with the following. If your maskmoment output is 
 ``path/to/maskmoment.mom0.fits.gz``, for the moment 0 map (.mom1, .mom2 for the others), these are loaded as follows below. With

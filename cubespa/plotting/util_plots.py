@@ -40,7 +40,14 @@ def plot_bbox(cubespa_obj, lims):
 
 
 def plot_rgb(rgb, lims=None, outname=None):
+    """ Plot an RGB image using matplotlib
 
+    Args:
+        rgb (nxmx3 array): RGB image formatted for matplotlib
+        lims (arr, optional): x and y limits for plotting. Defaults to None.
+        outname (str, optional): Output filename. If not, show plot instead of
+            save figure. Defaults to None.
+    """
     figsize = utils.recommended_figsize(rgb)
 
     plt.figure(figsize=figsize)

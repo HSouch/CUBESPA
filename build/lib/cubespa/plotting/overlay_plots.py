@@ -5,7 +5,8 @@ from .. import data, utils
 from matplotlib import pyplot as plt
 
 
-def overlay_plot(img_obj, overlay_obj, lims=None, levels = None, colors=None, log_img=False, cmap="Greys", filename=None):
+def overlay_plot(img_obj, overlay_obj, lims=None, levels = None, colors=None, log_img=False, 
+                 cmap="Greys", filename=None):
     if lims is None:
         xmin, xmax, ymin, ymax = 0, img_obj.data.shape[1], 0, img_obj.data.shape[0]
     else:

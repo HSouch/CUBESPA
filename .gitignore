@@ -1,3 +1,5 @@
 /.DS_Store
 /cubespa.egg-info
-/personal
+/personal/
+/dist/
+/build/

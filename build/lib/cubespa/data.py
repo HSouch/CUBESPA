@@ -2,7 +2,7 @@ import numpy as np
 import logging
 import copy
 
-from . import cubespa, utils
+from . import utils
 
 from astropy.wcs import WCS
 

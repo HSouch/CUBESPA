@@ -32,7 +32,8 @@ For example, if you had an H-alpha map of your galaxy, you might load it as foll
 
 >>> halpha = cubespa.load_data(halpha_fn, label="HALPHA")
 
-However, this map might not be aligned with your cube. CubeSPA uses the `reproject <https://reproject.readthedocs.io/en/stable/>`_
+However, this map might not be aligned with your cube. CubeSPA uses the 
+`reproject <https://reproject.readthedocs.io/en/stable/>`_
 package to properly align maps together. Once you have your ``DataSet`` object, you can align it with
 
 >>> halpha_interp = cubespa.align_image(c.mom_maps.mom0, halpha)
