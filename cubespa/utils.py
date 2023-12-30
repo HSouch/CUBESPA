@@ -153,6 +153,19 @@ def im_bounds(stats, sigma=1):
 
 
 def normalized_rgb_image(image, sigma=1, stretch=None):
+    """ Generate a properly formatted RGB image from a 3xmxn input.
+
+    Args:
+        image (ndarray): 3 x m x n input image.
+        sigma (int, float, or array optional): Sigma levels to adjust stretches and clips. Defaults to 1.
+            int: sigma for all 3 RGB images 
+            tuple: All 3 images clipped to (sigma[0], sigma[1])
+            Array of len(3): R,G,B images clipped to sigma[0], sigma[1], sigma[2], respectively.
+        stretch (str, optional): Type of stretch to apply. Defaults to None.
+
+    Returns:
+        ndarray: The properly transposed, stretched and clipped RGB image.
+    """
     r,g,b = image
 
     # If the sigma length is 3, assume it's of the format [sigma_r, sigma_g, sigma_br]

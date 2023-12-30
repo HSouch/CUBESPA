@@ -11,6 +11,14 @@ def plot_spectra(data, aper):
 
 
 def spectra_plot(cubespa_obj, aper, spectrum):
+    """ Create a plot showing both the image with overlaid spectra, as well as the spectrum with
+        RMS levels shown.
+
+    Args:
+        cubespa_obj (cubespa.CubeSPA): CubeSPA object.
+        aper (photutils.aperture): Input aperture, generated using cubespa.spectra
+        spectrum (_type_): _description_
+    """
     fig, ax = plt.subplots(1,2, figsize=(10, 4), width_ratios=(2, 3))
 
     ax[0].imshow(cubespa_obj.mom_maps.mom0.data, origin="lower")
