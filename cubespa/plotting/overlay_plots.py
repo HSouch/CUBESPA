@@ -5,14 +5,19 @@ from .. import data, utils
 from matplotlib import pyplot as plt
 
 
-def overlay_plot(img_obj, overlay_obj, lims=None, levels = None, colors=None, log_img=False, 
-                 cmap="Greys", filename=None):
+def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
     if lims is None:
         xmin, xmax, ymin, ymax = 0, img_obj.data.shape[1], 0, img_obj.data.shape[0]
     else:
         xmin, xmax, ymin, ymax = lims
 
     ys, xs = np.mgrid[:img_obj.data.shape[0], :img_obj.data.shape[1]]    
+
+    log_img = utils.check_kwarg("log", False, kwargs)
+    colors = utils.check_kwarg("colors", "black", kwargs)
+    levels = utils.check_kwarg("levels", None, kwargs)
+    cmap = utils.check_kwarg("cmap", "Greys", kwargs)
+    filename = utils.check_kwarg("filename", None, kwargs)
 
     if log_img:
         plot_data = np.log10(img_obj.data)
@@ -22,7 +27,7 @@ def overlay_plot(img_obj, overlay_obj, lims=None, levels = None, colors=None, lo
     figsize = utils.recommended_figsize(img_obj.data)
     plt.figure(figsize=figsize, facecolor="white")
     plt.imshow(plot_data, origin="lower", cmap=cmap)
-    plt.contour(xs, ys, overlay_obj.data, levels=levels, colors="black")
+    plt.contour(xs, ys, overlay_obj.data, levels=levels, colors=colors)
 
     plt.xlim(xmin, xmax)
     plt.ylim(ymin, ymax)
