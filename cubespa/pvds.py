@@ -17,6 +17,4 @@ def gen_pvd(cubespa_obj, center, length=50, pa=0, width=10):
     path = Path([coords[0], coords[1]], width=width)
     pvslice = extract_pv_slice(cubespa_obj.cube.data, path).data
 
-    print(pvslice.shape)
-
     return {"ENDPOINTS": endpoints, "CORNERS": corners, "PVD": pvslice}
