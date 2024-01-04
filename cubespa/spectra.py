@@ -54,8 +54,21 @@ def analyze_spectra(spec, sigma=2, cmin=None, cmax=None):
     return spec_med, spec_std
 
 
-def multi_spec(cubespa_obj, spec_info, plot=True):
 
+
+
+def multi_spec(cubespa_obj, spec_info):
+    """ Generate a list of apertures and spectra for better diagnostics.
+
+    Args:
+        cubespa_obj (cubespa.CubeSPA): Input CubeSPA object to pull spectra from.
+        spec_info (_type_): A list of spectra position and sizes, for example, to get two spectra, you would 
+        have:
+            spec_info = [[(p1, p2), (s1, s2)],
+                         [(p3, p4), (s3, s4)]]
+    Returns:
+        tuple(array): A list of apertures and a list of spectra.
+    """
     aper_list, spec_list = [], []
 
     for spec in spec_info:
