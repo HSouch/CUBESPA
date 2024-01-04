@@ -90,3 +90,18 @@ class CubeSPA:
         if return_products:
             return aper, spectrum
         
+
+class CubeComparison(CubeSPA):
+
+    def __init__(self, cube, comparison_cube, comp_mom_maps=None,
+                 data_index=0, mom_maps=None, 
+                 additional_maps=[], center=None, position_angle=None, 
+                 eps=None, limits=None, plot_dir=None, **kwargs) -> None:
+        super().__init__(cube, data_index, mom_maps, 
+                         additional_maps, center, position_angle, eps, limits, plot_dir, **kwargs)
+        
+        self.comparison_cube = data.handle_data(comparison_cube, 
+                                                handler=data.load_data, data_index=data_index)
+        self.comp_mom_maps = data.handle_data(comp_mom_maps, 
+                                              handler=data.load_moment_maps, data_index=data_index)
+
