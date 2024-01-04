@@ -5,6 +5,7 @@ from . import plotting
 
 from astropy.stats import sigma_clipped_stats
 
+
 def create_aperture(cubespa_obj, position, shape, aper_type="elliptical", plot=False):
 
     """ Generate photutils aperture of desired type, position, and shape.
@@ -52,9 +53,6 @@ def analyze_spectra(spec, sigma=2, cmin=None, cmax=None):
     spec_med, spec_std = sigma_clipped_stats(spec, sigma=sigma)[1:]
 
     return spec_med, spec_std
-
-
-
 
 
 def multi_spec(cubespa_obj, spec_info):
