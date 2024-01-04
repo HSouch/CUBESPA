@@ -61,7 +61,7 @@
 
 
 \title{CubeSPA}
-\date{Dec 30, 2023}
+\date{Jan 02, 2024}
 \release{}
 \author{Harrison Souchereau}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -374,6 +374,21 @@ a small compact stellar feature at the head of the  “blob”.
 \sphinxstepscope
 
 
+\section{Comparing Two Datacubes}
+\label{\detokenize{cube_comparison:comparing-two-datacubes}}\label{\detokenize{cube_comparison::doc}}
+\sphinxAtStartPar
+Comparing two different datacubes is an important step for any analysis, whether it is cubes from a different
+cleaning algorithm (the PHANGs pipeline vs a manual CASA cleaning, for example),
+or different momemt mask parameters,
+or cubes cleaned with different parameters, seeing how these cubes compare directly with one another is
+extremely important.
+
+\sphinxAtStartPar
+To get started comparing two cubes, one uses the \sphinxcode{\sphinxupquote{CubeComparison}} object.
+
+\sphinxstepscope
+
+
 \section{Spectral Analysis}
 \label{\detokenize{spectra:spectral-analysis}}\label{\detokenize{spectra::doc}}
 \sphinxAtStartPar
@@ -390,7 +405,16 @@ space. CubeSPA uses sigma clipping to determine an RMS of the spectra, and then 
 as a shaded grey region.
 
 \noindent\sphinxincludegraphics[width=800\sphinxpxdimen]{{blob_spectra}.png}
-\phantomsection\label{\detokenize{spectra:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+\phantomsection\label{\detokenize{spectra:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{multispec\_plot() (in module cubespa.plotting.spectra\_plots)@\spxentry{multispec\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.plotting.spectra_plots.multispec_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{multispec\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{aper\_list}}, \emph{\DUrole{n}{spec\_list}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{spectra:cubespa.plotting.spectra_plots.plot_spectra}}
@@ -495,6 +519,49 @@ Get the spectra through a datacube at the position and size of a given aperture.
 
 \end{fulllineitems}
 
+\index{multi\_spec() (in module cubespa.spectra)@\spxentry{multi\_spec()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{spectra:cubespa.spectra.multi_spec}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{multi\_spec}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{spec\_info}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate a list of apertures and spectra for better diagnostics.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} Input CubeSPA object to pull spectra from.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{spec\_info}} (\sphinxstyleliteralemphasis{\sphinxupquote{\_type\_}}) \textendash{} A list of spectra position and sizes, for example, to get two spectra, you would
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{have}} \textendash{} \begin{description}
+\sphinxlineitem{spec\_info = {[}{[}(p1, p2), (s1, s2){]},}
+\sphinxAtStartPar
+{[}(p3, p4), (s3, s4){]}{]}
+
+\end{description}
+
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+A list of apertures and a list of spectra.
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple(array)
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \sphinxstepscope
 
@@ -540,7 +607,19 @@ blue\sphinxhyphen{}shifted velocity channels, consistent with what is seen in th
 \label{\detokenize{modules:module-documentation}}\label{\detokenize{modules::doc}}
 
 \subsection{Utilities}
-\label{\detokenize{modules:module-cubespa.channel_maps}}\label{\detokenize{modules:utilities}}\index{module@\spxentry{module}!cubespa.channel\_maps@\spxentry{cubespa.channel\_maps}}\index{cubespa.channel\_maps@\spxentry{cubespa.channel\_maps}!module@\spxentry{module}}\phantomsection\label{\detokenize{modules:module-cubespa.cubespa}}\index{module@\spxentry{module}!cubespa.cubespa@\spxentry{cubespa.cubespa}}\index{cubespa.cubespa@\spxentry{cubespa.cubespa}!module@\spxentry{module}}\index{CubeSPA (class in cubespa.cubespa)@\spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}}
+\label{\detokenize{modules:module-cubespa.cubespa}}\label{\detokenize{modules:utilities}}\index{module@\spxentry{module}!cubespa.cubespa@\spxentry{cubespa.cubespa}}\index{cubespa.cubespa@\spxentry{cubespa.cubespa}!module@\spxentry{module}}\index{CubeComparison (class in cubespa.cubespa)@\spxentry{CubeComparison}\spxextra{class in cubespa.cubespa}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeComparison}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{  }}}\sphinxcode{\sphinxupquote{cubespa.cubespa.}}\sphinxbfcode{\sphinxupquote{CubeComparison}}}{\emph{\DUrole{n}{cube}}, \emph{\DUrole{n}{comparison\_cube}}, \emph{\DUrole{n}{comp\_mom\_maps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{mom\_maps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{additional\_maps}\DUrole{o}{=}\DUrole{default_value}{{[}{]}}}, \emph{\DUrole{n}{center}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{position\_angle}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{eps}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{limits}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{plot\_dir}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: {\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CubeSPA}}}}}
+
+\end{fulllineitems}
+
+\index{CubeSPA (class in cubespa.cubespa)@\spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{modules:cubespa.cubespa.CubeSPA}}
@@ -642,31 +721,24 @@ Bases: {\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{\sp
 \phantomsection\label{\detokenize{modules:cubespa.data.handle_data}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.data.}}\sphinxbfcode{\sphinxupquote{handle\_data}}}{\emph{\DUrole{n}{data}}, \emph{\DUrole{n}{handler}}, \emph{\DUrole{n}{data\_index}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
-\pysigstopsignatures\begin{description}
-\sphinxlineitem{Handle incoming data for the CubeSPA object.}
+\pysigstopsignatures
 \sphinxAtStartPar
-If not a string, CubeSPA will assume it is
-
-\end{description}
+Handle incoming data for the CubeSPA object.
+If not a string, CubeSPA will return the data enclosed in a dataset without additional info.
+:param data: Incoming data. If str, CubeSPA will automatically load it in.
+:type data: str or cubespa.DataSet
+:param handler: Method to handle data, either set to load\_data or load\_moment\_maps
+:type handler: method
+:param data\_index: Index to find data in. Defaults to 0.
+:type data\_index: int, optional
 \begin{quote}\begin{description}
-\sphinxlineitem{Parameters}\begin{itemize}
-\item {} 
+\sphinxlineitem{Returns}
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{data}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{ or }}\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.DataSet}}) \textendash{} Incoming data. If str, CubeSPA will automatically load it in.
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{handler}} (\sphinxstyleliteralemphasis{\sphinxupquote{method}}) \textendash{} Method to handle data, either set to load\_data or load\_moment\_maps
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{data\_index}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} Index to find data in. Defaults to 0.
-
-\end{itemize}
+The output DataSet object.
 
 \sphinxlineitem{Return type}
 \sphinxAtStartPar
-\_type\_
+utils.DataSet
 
 \end{description}\end{quote}
 
@@ -697,15 +769,30 @@ If not a string, CubeSPA will assume it is
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.overlays.}}\sphinxbfcode{\sphinxupquote{align\_image}}}{\emph{\DUrole{n}{input\_data}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{{\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{DataSet}}}}}, \emph{\DUrole{n}{data\_to\_align}\DUrole{p}{:}\DUrole{w}{  }\DUrole{n}{{\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{DataSet}}}}}}{}
 \pysigstopsignatures
-\end{fulllineitems}
+\sphinxAtStartPar
+Align two dataset objects together.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{input\_data}} ({\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{data.DataSet}}}}}) \textendash{} The DataSet object that serves as the template alignment.
 
-\phantomsection\label{\detokenize{modules:module-cubespa.pvds}}\index{module@\spxentry{module}!cubespa.pvds@\spxentry{cubespa.pvds}}\index{cubespa.pvds@\spxentry{cubespa.pvds}!module@\spxentry{module}}\index{gen\_pvd() (in module cubespa.pvds)@\spxentry{gen\_pvd()}\spxextra{in module cubespa.pvds}}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{data\_to\_align}} ({\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{data.DataSet}}}}}) \textendash{} The DataSet to align to input\_data
 
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{modules:cubespa.pvds.gen_pvd}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.pvds.}}\sphinxbfcode{\sphinxupquote{gen\_pvd}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{center}}, \emph{\DUrole{n}{length}\DUrole{o}{=}\DUrole{default_value}{50}}, \emph{\DUrole{n}{pa}\DUrole{o}{=}\DUrole{default_value}{0}}, \emph{\DUrole{n}{width}\DUrole{o}{=}\DUrole{default_value}{10}}}{}
-\pysigstopsignatures
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+A new DataSet object where the data is aligned with input\_data
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+{\hyperref[\detokenize{modules:cubespa.data.DataSet}]{\sphinxcrossref{DataSet}}}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \phantomsection\label{\detokenize{modules:module-cubespa.spectra}}\index{module@\spxentry{module}!cubespa.spectra@\spxentry{cubespa.spectra}}\index{cubespa.spectra@\spxentry{cubespa.spectra}!module@\spxentry{module}}\index{analyze\_spectra() (in module cubespa.spectra)@\spxentry{analyze\_spectra()}\spxextra{in module cubespa.spectra}}
@@ -767,6 +854,49 @@ Get the spectra through a datacube at the position and size of a given aperture.
 \sphinxlineitem{Return type}
 \sphinxAtStartPar
 \_type\_
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{multi\_spec() (in module cubespa.spectra)@\spxentry{multi\_spec()}\spxextra{in module cubespa.spectra}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.spectra.multi_spec}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.spectra.}}\sphinxbfcode{\sphinxupquote{multi\_spec}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{spec\_info}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Generate a list of apertures and spectra for better diagnostics.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{cubespa\_obj}} ({\hyperref[\detokenize{modules:cubespa.cubespa.CubeSPA}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{cubespa.CubeSPA}}}}}) \textendash{} Input CubeSPA object to pull spectra from.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{spec\_info}} (\sphinxstyleliteralemphasis{\sphinxupquote{\_type\_}}) \textendash{} A list of spectra position and sizes, for example, to get two spectra, you would
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{have}} \textendash{} \begin{description}
+\sphinxlineitem{spec\_info = {[}{[}(p1, p2), (s1, s2){]},}
+\sphinxAtStartPar
+{[}(p3, p4), (s3, s4){]}{]}
+
+\end{description}
+
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+A list of apertures and a list of spectra.
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple(array)
 
 \end{description}\end{quote}
 
@@ -1075,7 +1205,16 @@ and their desired limits will be the entire array. Defaults to True.
 \pysigstopsignatures
 \end{fulllineitems}
 
-\phantomsection\label{\detokenize{modules:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+\phantomsection\label{\detokenize{modules:module-cubespa.plotting.spectra_plots}}\index{module@\spxentry{module}!cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}}\index{cubespa.plotting.spectra\_plots@\spxentry{cubespa.plotting.spectra\_plots}!module@\spxentry{module}}\index{multispec\_plot() (in module cubespa.plotting.spectra\_plots)@\spxentry{multispec\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules:cubespa.plotting.spectra_plots.multispec_plot}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{cubespa.plotting.spectra\_plots.}}\sphinxbfcode{\sphinxupquote{multispec\_plot}}}{\emph{\DUrole{n}{cubespa\_obj}}, \emph{\DUrole{n}{aper\_list}}, \emph{\DUrole{n}{spec\_list}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{plot\_spectra() (in module cubespa.plotting.spectra\_plots)@\spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{modules:cubespa.plotting.spectra_plots.plot_spectra}}
@@ -1184,17 +1323,15 @@ save figure. Defaults to None.
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{c}
-\item\relax\sphinxstyleindexentry{cubespa.channel\_maps}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.channel_maps}}
 \item\relax\sphinxstyleindexentry{cubespa.cubespa}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.cubespa}}
 \item\relax\sphinxstyleindexentry{cubespa.data}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.data}}
 \item\relax\sphinxstyleindexentry{cubespa.moment\_maps}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.moment_maps}}
 \item\relax\sphinxstyleindexentry{cubespa.overlays}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.overlays}}
 \item\relax\sphinxstyleindexentry{cubespa.plotting.channel\_map\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.channel_map_plots}}
-\item\relax\sphinxstyleindexentry{cubespa.plotting.mommap\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.mommap_plots}}
+\item\relax\sphinxstyleindexentry{cubespa.plotting.mommap\_plots}\sphinxstyleindexpageref{momentmaps:\detokenize{module-cubespa.plotting.mommap_plots}}
 \item\relax\sphinxstyleindexentry{cubespa.plotting.overlay\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.overlay_plots}}
 \item\relax\sphinxstyleindexentry{cubespa.plotting.spectra\_plots}\sphinxstyleindexpageref{spectra:\detokenize{module-cubespa.plotting.spectra_plots}}
 \item\relax\sphinxstyleindexentry{cubespa.plotting.util\_plots}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.plotting.util_plots}}
-\item\relax\sphinxstyleindexentry{cubespa.pvds}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.pvds}}
 \item\relax\sphinxstyleindexentry{cubespa.spectra}\sphinxstyleindexpageref{spectra:\detokenize{module-cubespa.spectra}}
 \item\relax\sphinxstyleindexentry{cubespa.utils}\sphinxstyleindexpageref{modules:\detokenize{module-cubespa.utils}}
 \end{sphinxtheindex}

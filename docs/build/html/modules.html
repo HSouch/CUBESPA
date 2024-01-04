@@ -98,23 +98,20 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="cubespa.data.handle_data">
 <span class="sig-prename descclassname"><span class="pre">cubespa.data.</span></span><span class="sig-name descname"><span class="pre">handle_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.data.handle_data" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>Handle incoming data for the CubeSPA object.</dt><dd><p>If not a string, CubeSPA will return the data enclosed in a dataset without additional info.</p>
-</dd>
-</dl>
+<dd><p>Handle incoming data for the CubeSPA object.
+If not a string, CubeSPA will return the data enclosed in a dataset without additional info.
+:param data: Incoming data. If str, CubeSPA will automatically load it in.
+:type data: str or cubespa.DataSet
+:param handler: Method to handle data, either set to load_data or load_moment_maps
+:type handler: method
+:param data_index: Index to find data in. Defaults to 0.
+:type data_index: int, optional</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>str</em><em> or </em><em>cubespa.DataSet</em>) – Incoming data. If str, CubeSPA will automatically load it in.</p></li>
-<li><p><strong>handler</strong> (<em>method</em>) – Method to handle data, either set to load_data or load_moment_maps</p></li>
-<li><p><strong>data_index</strong> (<em>int</em><em>, </em><em>optional</em>) – Index to find data in. Defaults to 0.</p></li>
-</ul>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The output DataSet object.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The output DataSet object.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>utils.DataSet</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>utils.DataSet</p>
 </dd>
 </dl>
 </dd></dl>
@@ -132,7 +129,22 @@
 <span class="target" id="module-cubespa.moment_maps"></span><span class="target" id="module-cubespa.overlays"></span><dl class="py function">
 <dt class="sig sig-object py" id="cubespa.overlays.align_image">
 <span class="sig-prename descclassname"><span class="pre">cubespa.overlays.</span></span><span class="sig-name descname"><span class="pre">align_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cubespa.data.DataSet" title="cubespa.data.DataSet"><span class="pre">DataSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_to_align</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cubespa.data.DataSet" title="cubespa.data.DataSet"><span class="pre">DataSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.overlays.align_image" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Align two dataset objects together.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_data</strong> (<a class="reference internal" href="#cubespa.data.DataSet" title="cubespa.data.DataSet"><em>data.DataSet</em></a>) – The DataSet object that serves as the template alignment.</p></li>
+<li><p><strong>data_to_align</strong> (<a class="reference internal" href="#cubespa.data.DataSet" title="cubespa.data.DataSet"><em>data.DataSet</em></a>) – The DataSet to align to input_data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new DataSet object where the data is aligned with input_data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cubespa.data.DataSet" title="cubespa.data.DataSet">DataSet</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <span class="target" id="module-cubespa.pvds"></span><dl class="py function">
 <dt class="sig sig-object py" id="cubespa.pvds.gen_pvd">
@@ -177,6 +189,11 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cubespa.spectra.multi_spec">
+<span class="sig-prename descclassname"><span class="pre">cubespa.spectra.</span></span><span class="sig-name descname"><span class="pre">multi_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cubespa_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.spectra.multi_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <span class="target" id="module-cubespa.utils"></span><dl class="py function">
 <dt class="sig sig-object py" id="cubespa.utils.RMS">
@@ -357,6 +374,11 @@ and their desired limits will be the entire array. Defaults to True.</p>
 <dd></dd></dl>
 
 <span class="target" id="module-cubespa.plotting.spectra_plots"></span><dl class="py function">
+<dt class="sig sig-object py" id="cubespa.plotting.spectra_plots.multispec_plot">
+<span class="sig-prename descclassname"><span class="pre">cubespa.plotting.spectra_plots.</span></span><span class="sig-name descname"><span class="pre">multispec_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cubespa_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aper_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec_list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.plotting.spectra_plots.multispec_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="cubespa.plotting.spectra_plots.plot_spectra">
 <span class="sig-prename descclassname"><span class="pre">cubespa.plotting.spectra_plots.</span></span><span class="sig-name descname"><span class="pre">plot_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cubespa.plotting.spectra_plots.plot_spectra" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>

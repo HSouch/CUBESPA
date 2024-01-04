@@ -55,7 +55,8 @@ Cube Analysis
 
 .. toctree::
     :maxdepth: 2
-        
+    
+    cube_comparison.rst
     spectra.rst
     pvds.rst
 
