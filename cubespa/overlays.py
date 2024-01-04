@@ -7,6 +7,15 @@ from . import data, utils
 
 
 def align_image(input_data: data.DataSet, data_to_align: data.DataSet):
+    """ Align two dataset objects together.
+
+    Args:
+        input_data (data.DataSet): The DataSet object that serves as the template alignment.
+        data_to_align (data.DataSet): The DataSet to align to input_data
+
+    Returns:
+        DataSet: A new DataSet object where the data is aligned with input_data
+    """
 
     input_wcs, align_wcs = utils.match_wcs_axes(input_data.wcs, data_to_align.wcs)
 
