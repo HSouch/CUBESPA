@@ -1,3 +1,3 @@
 
-from velocity_map import *
+from .velocity_map import *
 
