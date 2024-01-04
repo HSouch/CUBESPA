@@ -2,6 +2,8 @@ from matplotlib import pyplot as plt
 
 import numpy as np
 
+from .. import utils
+
 
 def moment_map_plot(cubespa_obj, filename = None, use_limits=True, **kwargs):
     """ Generate moment map plots.
@@ -14,14 +16,20 @@ def moment_map_plot(cubespa_obj, filename = None, use_limits=True, **kwargs):
             It is a good idea to set to False for cutout objects, as their limits will be relative to the initial CubeSPA object,
             and their desired limits will be the entire array. Defaults to True.
     """
+    if "kwargs" in kwargs.keys():
+        kwargs.update(kwargs["kwargs"])
+
 
     xmin, xmax, ymin, ymax = cubespa_obj.limits
 
     mom0, mom1, mom2 = cubespa_obj.mom_maps.mom0.data, cubespa_obj.mom_maps.mom1.data, cubespa_obj.mom_maps.mom2.data, 
 
     xs, ys = np.mgrid[:mom0.shape[0], :mom0.shape[1]]
+    
+    print(kwargs)
+    v_offset = utils.check_kwarg("vsys", 0, kwargs)
+    print(v_offset)
 
-    v_offset = 43
 
     fig, ax = plt.subplots(1,3, figsize=(12,7), sharey=True)
 
