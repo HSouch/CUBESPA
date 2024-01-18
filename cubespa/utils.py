@@ -205,3 +205,28 @@ def check_kwarg(key, default, kwargs: dict):
         return kwargs[key]
     else: 
         return default
+    
+
+def create_channel_ranges(n):
+    """ Create an array of None values of length n (to initialize channel ranges for spectral analysis) """
+    return [None for _ in range(n)]
+
+
+def H2_Mass(SCO, D_L=100., z_gal=0.01, freq=220., a_CO=3.2, R_21=0.8):
+    """ Calculate the H2 mass from a CO(2-1) emission map
+
+    Args:
+        SCO (float): The integrated CO(2-1) flux (in Jy km/s)
+        D_L (float, optional): The luminosity distance (in MPC). Defaults to 100.
+        z_gal (float, optional): The redshift of the galaxy. Defaults to 0.01.
+        freq (float, optional): The observing frequency (in GHz). Defaults to 220.
+        a_CO (float, optional): The CO conversion factor (in solar masses per square pc). Defaults to 3.2.
+        R_21 (float, optional): The CO(2-1)/(1-0) ratio. Defaults to 0.8 (from Leroy et al, 2009).
+    """
+    LCO = 3.25e7 * SCO * (D_L ** 2)
+    LCO /= (freq ** 2)
+    LCO /= ((1 + z_gal) ** 3)
+
+    MH2 = 1.34 * (a_CO / R_21) * LCO
+
+    return MH2
