@@ -4,6 +4,7 @@ from .modeling import *
 
 from .cubespa import *          # Module with all CubeSPA object functions
 from .data import *             # Data handling modules
+from .moment_maps import *      # Module for generating moment maps using masking
 from .overlays import *         # Module for reprojection and creating overlays
 from .pvds import *             # Module for position velocity diagrams (PVDs)
 from .spectra import *          # Module for generating and analyzing spectra
