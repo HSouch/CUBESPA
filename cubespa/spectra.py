@@ -80,3 +80,12 @@ def multi_spec(cubespa_obj, spec_info):
         spec_list.append(spec)
     
     return aper_list, spec_list
+
+
+def calc_snr(spec, chan_min, chan_max):
+    stats = analyze_spectra(spec)
+    n_chan = chan_max - chan_min
+    spec_slice = spec[chan_min:chan_max]
+
+    flux_sum = np.nansum(spec_slice)
+    return flux_sum / (stats[1] * np.sqrt(n_chan))

@@ -16,6 +16,22 @@ as a shaded grey region.
   :alt: Alternative text
 
 
+SNR Analysis
+------------
+
+To manually check the SNR of a given region (say, between channels 20 and 40 of the array ``spec``),
+you can with the following method:
+
+>>> chan_min, chan_max = 20, 40
+>>> snr = cubespa.calc_snr(spec, chan_min, chan_max)
+
+The signal to noise ratio between the two channels is given by:
+
+.. math:: SNR = \frac{\Sigma F}{RMS_{spec} * \sqrt{n_{chan}}}
+
+
+
+
 
 .. automodule:: cubespa.plotting.spectra_plots
    :members:
