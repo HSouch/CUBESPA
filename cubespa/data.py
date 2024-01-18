@@ -42,6 +42,8 @@ def load_data(filename, data_index=0, rgb_index = None, label=None):
             
             if rgb_index is None:
                 data = hdu.data
+                if len(data.shape) == 4:
+                    data = data[0]
                 wcs = WCS(hdu.header)
             else:
                 data = hdu.data[rgb_index]
