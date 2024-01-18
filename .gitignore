@@ -3,3 +3,8 @@
 /personal/
 /dist/
 /build/
+
+/cubespa/__pycache__/
+/cubespa/analysis/__pycache__/
+/cubespa/modeling/__pycache__/
+/cubespa/plotting/__pycache__/
