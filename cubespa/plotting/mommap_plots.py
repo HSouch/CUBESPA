@@ -27,13 +27,17 @@ def moment_map_plot(cubespa_obj, filename = None, use_limits=True, **kwargs):
 
     xs, ys = np.mgrid[:mom0.shape[0], :mom0.shape[1]]
     
-    v_offset = utils.check_kwarg("vsys", 0, kwargs)
+    v_offset = utils.check_kwarg("vsys", None, kwargs)
+    if v_offset is None:
+        v_offset = cubespa_obj.vsys
+
     mom0_lims = utils.check_kwarg("mom0_lims", [-3, 1.1], kwargs)
     divide_beam = utils.check_kwarg("divide_beam", False, kwargs)
 
     
     beam_area = cubespa_obj.beam_area if divide_beam else 1
-    mom0_units = r'$\log_{10}($ I [Jy km/s ])' if divide_beam else r'$\log_{10}($ I [Jy beam$^{-1}$ km/s ])'
+    mom0_units = r'$\log_{10}($ I [Jy km/s pixel$^{-1}$])' if divide_beam else r'$\log_{10}($ I [Jy beam$^{-1}$ km/s ])'
+    mom0_text_units = r'Jy km/s /pixel' if divide_beam else r'Jy km/s /beam'
 
     fig, ax = plt.subplots(1,3, figsize=(12,7), sharey=True, facecolor="white")
 
@@ -49,7 +53,8 @@ def moment_map_plot(cubespa_obj, filename = None, use_limits=True, **kwargs):
     ax[0].contour(ys, xs, mom0, origin="lower", colors="black", 
                 levels=[0.04, 0.08, 0.1, 0.5, 1, 2, 2.5], linewidths=0.75)
     ax[0].contour(ys, xs, np.log10(mom0), origin="lower", colors="black", levels=[-5, -4, -3, -2, -1, 0, 1])
-    ax[0].text(xmin + dx / 10, ymax, r'$F_{tot}=$ ' + str(np.round(np.nansum(mom0 / beam_area), 3)))
+    ax[0].text(xmin + dx / 10, ymax, r'$F_{tot}=$ ' + str(np.round(np.nansum(mom0 / beam_area), 3)) + " Jy km/s / beam")
+    ax[0].text(xmin + dx / 10, ymax - dy / 20, r'$F_{tot}=$ ' + str(np.round(np.nansum(mom0), 3)) + " Jy km/s / pixel")
 
     mom1_ax = ax[1].imshow(mom1 - v_offset, origin="lower", cmap="rainbow", vmin= - 50, vmax= 50)
     # ax[1].contour(ys, xs, mom0, origin="lower", colors="white", 
