@@ -40,7 +40,7 @@ def get_spectra(cube, aper):
         phot = aperture_photometry(frame, aper)
 
         reg_flux.append(float(phot["aperture_sum"]))
-    return np.array(reg_flux)
+    return np.array(reg_flux) / aper.area
 
 
 def analyze_spectra(spec, sigma=2, cmin=None, cmax=None):
@@ -89,3 +89,43 @@ def calc_snr(spec, chan_min, chan_max):
 
     flux_sum = np.nansum(spec_slice)
     return flux_sum / (stats[1] * np.sqrt(n_chan))
+
+
+def align_apertures(aper_list, wcs1, wcs2):
+    """ Align and resize a set of apertures from wcs1 to wcs2
+
+    Args:
+        aper_list (list): List of apertures in the following format:
+            [(p1, p2), (s1, s2)] where the first tuple is the (x,y) position and the second tuple is the (x,y) height.
+        wcs1 (astropy.wcs.WCS): WCS that aper_list apertures are already aligned to
+        wcs2 (astropy.wcs.WCS): WCS to align apertures to
+
+    Returns:
+        _type_: _description_
+    """
+
+    apers_out = []
+
+    s_ratio = wcs2.wcs.cdelt / wcs1.wcs.cdelt
+
+    for n in aper_list:
+        (p1, p2), (s1, s2) = n
+        
+        x1, y1 = wcs1.wcs_pix2world(p1, p2, 1)
+        
+        x2, y2 = wcs2.wcs_world2pix(x1, y1, 1)
+
+        apers_out.append([(int(x2), int(y2)), 
+                          (np.round(s1 * s_ratio[0], 2), np.round(s2 * s_ratio[1], 2))])
+        
+    return apers_out 
+
+
+def spectra_comparison(cubecomp, aper_list, outname=None, plot_ticks=True, chan_ranges=None):
+    print(len(aper_list))
+    apertures_aligned = align_apertures(aper_list, cubecomp.cube1.mom_maps.mom0.wcs, cubecomp.cube2.mom_maps.mom0.wcs)
+
+    a1, s1 = multi_spec(cubecomp.cube1, aper_list)
+    a2, s2 = multi_spec(cubecomp.cube2, apertures_aligned)
+
+    plotting.spectra_comparison(cubecomp, a1, a2, s1, s2, cmap="rainbow", outname=outname, chan_ranges=chan_ranges, plot_ticks=plot_ticks)
