@@ -78,3 +78,40 @@ def rgb_overlay(rgb_img, overlay_obj, lims=None, levels=None, colors=None, filen
     else:
         plt.savefig(filename, dpi=150)
         plt.close()
+
+
+def plot_psf_overlay(cubespa_obj, psf_conv=None, x0=0, y0 = 0, **kwargs):
+
+    figsize = utils.recommended_figsize(cubespa_obj.mom_maps.mom0.data)
+    plt.figure(figsize=figsize, facecolor="white")
+
+    show_ticks = utils.check_kwarg("show_xticks", True, kwargs)
+    levels = np.array(utils.check_kwarg("levels", [0.02, 0.05, 0.1], kwargs))
+
+    xmin, xmax, ymin, ymax = cubespa_obj.limits
+    dx, dy = xmax-xmin, ymax-ymin
+
+    mom0 = cubespa_obj.mom_maps.mom0.data
+    psf = np.nanmean(cubespa_obj.psf.data, axis=0)
+
+
+    ys, xs = np.mgrid[:psf.shape[0], :psf.shape[1]]
+    xs -= x0
+    ys -= y0
+
+
+    plt.imshow(np.log10(mom0), origin="lower", cmap="Greys")
+    plt.text(xmin + dx / 10, ymax - dy/18, f'PSF Contours Levels = {levels * 100} %', fontsize=15, color="Red")
+
+
+    plt.contour(xs, ys, psf, levels=levels, colors="red", alpha=0.5)
+
+    plt.xlim(xmin, xmax)
+    plt.ylim(ymin, ymax)
+
+    if not show_ticks:
+        plt.xticks([])
+        plt.yticks([])
+
+    plt.tight_layout()
+    plt.show()
