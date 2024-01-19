@@ -5,138 +5,146 @@
 \let\spxextra \sphinxstyleindexextra
 
   \bigletter A
-  \item \spxentry{align\_image()}\spxextra{in module cubespa.overlays}, \hyperpage{20}
-  \item \spxentry{analyze\_spectra()}\spxextra{in module cubespa.spectra}, \hyperpage{14}, 
-		\hyperpage{20}
+  \item \spxentry{align\_apertures()}\spxextra{in module cubespa.spectra}, \hyperpage{18}, 
+		\hyperpage{24}
+  \item \spxentry{analyze\_spectra()}\spxextra{in module cubespa.spectra}, \hyperpage{18}, 
+		\hyperpage{24}
 
   \indexspace
   \bigletter B
-  \item \spxentry{beam\_area()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{bounds\_from\_moment\_map()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+  \item \spxentry{beam\_area()}\spxextra{in module cubespa.utils}, \hyperpage{25}
+  \item \spxentry{bounds\_from\_moment\_map()}\spxextra{in module cubespa.utils}, \hyperpage{25}
 
   \indexspace
   \bigletter C
-  \item \spxentry{centre\_coords()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+  \item \spxentry{calc\_snr()}\spxextra{in module cubespa.spectra}, \hyperpage{18}, \hyperpage{24}
+  \item \spxentry{centre\_coords()}\spxextra{in module cubespa.utils}, \hyperpage{25}
   \item \spxentry{channel\_maps()}\spxextra{in module cubespa.plotting.channel\_map\_plots}, 
-		\hyperpage{22}
-  \item \spxentry{check\_and\_make\_dir()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{check\_kwarg()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{create\_aperture()}\spxextra{in module cubespa.spectra}, \hyperpage{14}, 
-		\hyperpage{20}
-  \item \spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{19}
-  \item \spxentry{CubeComparison}\spxextra{class in cubespa.cubespa}, \hyperpage{19}
-  \item \spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}, \hyperpage{19}
+		\hyperpage{27}
+  \item \spxentry{check\_and\_make\_dir()}\spxextra{in module cubespa.utils}, \hyperpage{25}
+  \item \spxentry{check\_kwarg()}\spxextra{in module cubespa.utils}, \hyperpage{25}
+  \item \spxentry{create\_aperture()}\spxextra{in module cubespa.spectra}, \hyperpage{18}, 
+		\hyperpage{24}
+  \item \spxentry{create\_channel\_ranges()}\spxextra{in module cubespa.utils}, \hyperpage{25}
+  \item \spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeComparison method}, 
+		\hyperpage{23}
+  \item \spxentry{create\_spectra()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{23}
+  \item \spxentry{CubeComparison}\spxextra{class in cubespa.cubespa}, \hyperpage{23}
+  \item \spxentry{CubeSPA}\spxextra{class in cubespa.cubespa}, \hyperpage{23}
   \item \spxentry{cubespa.cubespa}
-    \subitem \spxentry{module}, \hyperpage{19}
-  \item \spxentry{cubespa.data}
-    \subitem \spxentry{module}, \hyperpage{19}
-  \item \spxentry{cubespa.moment\_maps}
-    \subitem \spxentry{module}, \hyperpage{20}
-  \item \spxentry{cubespa.overlays}
-    \subitem \spxentry{module}, \hyperpage{20}
-  \item \spxentry{cubespa.plotting.channel\_map\_plots}
-    \subitem \spxentry{module}, \hyperpage{22}
-  \item \spxentry{cubespa.plotting.mommap\_plots}
-    \subitem \spxentry{module}, \hyperpage{10}, \hyperpage{22}
-  \item \spxentry{cubespa.plotting.overlay\_plots}
-    \subitem \spxentry{module}, \hyperpage{22}
-  \item \spxentry{cubespa.plotting.spectra\_plots}
-    \subitem \spxentry{module}, \hyperpage{13}, \hyperpage{22}
-  \item \spxentry{cubespa.plotting.util\_plots}
     \subitem \spxentry{module}, \hyperpage{23}
+  \item \spxentry{cubespa.data}
+    \subitem \spxentry{module}, \hyperpage{23}
+  \item \spxentry{cubespa.plotting.channel\_map\_plots}
+    \subitem \spxentry{module}, \hyperpage{27}
+  \item \spxentry{cubespa.plotting.mommap\_plots}
+    \subitem \spxentry{module}, \hyperpage{10}, \hyperpage{27}
+  \item \spxentry{cubespa.plotting.overlay\_plots}
+    \subitem \spxentry{module}, \hyperpage{27}
+  \item \spxentry{cubespa.plotting.spectra\_plots}
+    \subitem \spxentry{module}, \hyperpage{18}, \hyperpage{27}
+  \item \spxentry{cubespa.plotting.util\_plots}
+    \subitem \spxentry{module}, \hyperpage{27}
   \item \spxentry{cubespa.spectra}
-    \subitem \spxentry{module}, \hyperpage{14}, \hyperpage{20}
+    \subitem \spxentry{module}, \hyperpage{18}, \hyperpage{24}
   \item \spxentry{cubespa.utils}
-    \subitem \spxentry{module}, \hyperpage{21}
+    \subitem \spxentry{module}, \hyperpage{25}
 
   \indexspace
   \bigletter D
-  \item \spxentry{DataSet}\spxextra{class in cubespa.data}, \hyperpage{19}
+  \item \spxentry{DataSet}\spxextra{class in cubespa.data}, \hyperpage{23}
 
   \indexspace
   \bigletter E
-  \item \spxentry{estimate\_rms()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+  \item \spxentry{estimate\_rms()}\spxextra{in module cubespa.utils}, \hyperpage{25}
 
   \indexspace
   \bigletter G
-  \item \spxentry{gen\_cutout()}\spxextra{in module cubespa.data}, \hyperpage{19}
-  \item \spxentry{get\_spectra()}\spxextra{in module cubespa.spectra}, \hyperpage{14}, 
-		\hyperpage{20}
+  \item \spxentry{gen\_cutout()}\spxextra{in module cubespa.data}, \hyperpage{23}
+  \item \spxentry{get\_beam\_area()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{23}
+  \item \spxentry{get\_spectra()}\spxextra{in module cubespa.spectra}, \hyperpage{19}, 
+		\hyperpage{24}
 
   \indexspace
   \bigletter H
-  \item \spxentry{handle\_data()}\spxextra{in module cubespa.data}, \hyperpage{19}
+  \item \spxentry{H2\_Mass()}\spxextra{in module cubespa.utils}, \hyperpage{25}
+  \item \spxentry{handle\_data()}\spxextra{in module cubespa.data}, \hyperpage{23}
 
   \indexspace
   \bigletter I
-  \item \spxentry{im\_bounds()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{imstat()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+  \item \spxentry{im\_bounds()}\spxextra{in module cubespa.utils}, \hyperpage{26}
+  \item \spxentry{imstat()}\spxextra{in module cubespa.utils}, \hyperpage{26}
 
   \indexspace
   \bigletter L
-  \item \spxentry{limit\_plot()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{23}
-  \item \spxentry{line\_corners()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{line\_endpoints()}\spxextra{in module cubespa.utils}, \hyperpage{21}
-  \item \spxentry{load\_data()}\spxextra{in module cubespa.data}, \hyperpage{20}
-  \item \spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{19}
-  \item \spxentry{load\_moment\_maps()}\spxextra{in module cubespa.data}, \hyperpage{20}
+  \item \spxentry{limit\_plot()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{27}
+  \item \spxentry{line\_corners()}\spxextra{in module cubespa.utils}, \hyperpage{26}
+  \item \spxentry{line\_endpoints()}\spxextra{in module cubespa.utils}, \hyperpage{26}
+  \item \spxentry{load\_data()}\spxextra{in module cubespa.data}, \hyperpage{24}
+  \item \spxentry{load\_dir()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{23}
+  \item \spxentry{load\_moment\_maps()}\spxextra{in module cubespa.data}, \hyperpage{24}
 
   \indexspace
   \bigletter M
-  \item \spxentry{match\_wcs\_axes()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+  \item \spxentry{match\_wcs\_axes()}\spxextra{in module cubespa.utils}, \hyperpage{26}
   \item \spxentry{module}
-    \subitem \spxentry{cubespa.cubespa}, \hyperpage{19}
-    \subitem \spxentry{cubespa.data}, \hyperpage{19}
-    \subitem \spxentry{cubespa.moment\_maps}, \hyperpage{20}
-    \subitem \spxentry{cubespa.overlays}, \hyperpage{20}
-    \subitem \spxentry{cubespa.plotting.channel\_map\_plots}, \hyperpage{22}
-    \subitem \spxentry{cubespa.plotting.mommap\_plots}, \hyperpage{10}, \hyperpage{22}
-    \subitem \spxentry{cubespa.plotting.overlay\_plots}, \hyperpage{22}
-    \subitem \spxentry{cubespa.plotting.spectra\_plots}, \hyperpage{13}, \hyperpage{22}
-    \subitem \spxentry{cubespa.plotting.util\_plots}, \hyperpage{23}
-    \subitem \spxentry{cubespa.spectra}, \hyperpage{14}, \hyperpage{20}
-    \subitem \spxentry{cubespa.utils}, \hyperpage{21}
+    \subitem \spxentry{cubespa.cubespa}, \hyperpage{23}
+    \subitem \spxentry{cubespa.data}, \hyperpage{23}
+    \subitem \spxentry{cubespa.plotting.channel\_map\_plots}, \hyperpage{27}
+    \subitem \spxentry{cubespa.plotting.mommap\_plots}, \hyperpage{10}, \hyperpage{27}
+    \subitem \spxentry{cubespa.plotting.overlay\_plots}, \hyperpage{27}
+    \subitem \spxentry{cubespa.plotting.spectra\_plots}, \hyperpage{18}, \hyperpage{27}
+    \subitem \spxentry{cubespa.plotting.util\_plots}, \hyperpage{27}
+    \subitem \spxentry{cubespa.spectra}, \hyperpage{18}, \hyperpage{24}
+    \subitem \spxentry{cubespa.utils}, \hyperpage{25}
   \item \spxentry{moment\_map\_plot()}\spxextra{in module cubespa.plotting.mommap\_plots}, 
-		\hyperpage{10}, \hyperpage{22}
-  \item \spxentry{MomentMaps}\spxextra{class in cubespa.data}, \hyperpage{19}
-  \item \spxentry{multi\_spec()}\spxextra{in module cubespa.spectra}, \hyperpage{14}, 
-		\hyperpage{20}
+		\hyperpage{10}, \hyperpage{27}
+  \item \spxentry{MomentMaps}\spxextra{class in cubespa.data}, \hyperpage{23}
+  \item \spxentry{multi\_spec()}\spxextra{in module cubespa.spectra}, \hyperpage{19}, 
+		\hyperpage{24}
   \item \spxentry{multispec\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}, 
-		\hyperpage{13}, \hyperpage{22}
+		\hyperpage{18}, \hyperpage{27}
 
   \indexspace
   \bigletter N
-  \item \spxentry{normalize()}\spxextra{in module cubespa.utils}, \hyperpage{22}
-  \item \spxentry{normalized\_rgb\_image()}\spxextra{in module cubespa.utils}, \hyperpage{22}
+  \item \spxentry{normalize()}\spxextra{in module cubespa.utils}, \hyperpage{26}
+  \item \spxentry{normalized\_rgb\_image()}\spxextra{in module cubespa.utils}, \hyperpage{26}
 
   \indexspace
   \bigletter O
   \item \spxentry{overlay\_plot()}\spxextra{in module cubespa.plotting.overlay\_plots}, 
-		\hyperpage{22}
+		\hyperpage{27}
 
   \indexspace
   \bigletter P
-  \item \spxentry{plot\_bbox()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{23}
-  \item \spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{19}
-  \item \spxentry{plot\_rgb()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{23}
+  \item \spxentry{plot\_bbox()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{27}
+  \item \spxentry{plot\_moment\_maps()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{23}
+  \item \spxentry{plot\_psf\_overlay()}\spxextra{in module cubespa.plotting.overlay\_plots}, 
+		\hyperpage{27}
+  \item \spxentry{plot\_rgb()}\spxextra{in module cubespa.plotting.util\_plots}, \hyperpage{27}
   \item \spxentry{plot\_spectra()}\spxextra{in module cubespa.plotting.spectra\_plots}, 
-		\hyperpage{14}, \hyperpage{22}
+		\hyperpage{18}, \hyperpage{27}
 
   \indexspace
   \bigletter R
-  \item \spxentry{recommended\_figsize()}\spxextra{in module cubespa.utils}, \hyperpage{22}
+  \item \spxentry{readout()}\spxextra{cubespa.cubespa.CubeComparison method}, \hyperpage{23}
+  \item \spxentry{recommended\_figsize()}\spxextra{in module cubespa.utils}, \hyperpage{26}
   \item \spxentry{rgb\_overlay()}\spxextra{in module cubespa.plotting.overlay\_plots}, 
-		\hyperpage{22}
-  \item \spxentry{RGBImage}\spxextra{class in cubespa.data}, \hyperpage{19}
-  \item \spxentry{RMS()}\spxextra{in module cubespa.utils}, \hyperpage{21}
+		\hyperpage{27}
+  \item \spxentry{RGBImage}\spxextra{class in cubespa.data}, \hyperpage{23}
+  \item \spxentry{RMS()}\spxextra{in module cubespa.utils}, \hyperpage{25}
 
   \indexspace
   \bigletter S
+  \item \spxentry{spectra\_comparison()}\spxextra{in module cubespa.plotting.spectra\_plots}, 
+		\hyperpage{18}, \hyperpage{27}
+  \item \spxentry{spectra\_comparison()}\spxextra{in module cubespa.spectra}, \hyperpage{19}, 
+		\hyperpage{25}
   \item \spxentry{spectra\_plot()}\spxextra{in module cubespa.plotting.spectra\_plots}, 
-		\hyperpage{14}, \hyperpage{22}
+		\hyperpage{18}, \hyperpage{27}
 
   \indexspace
   \bigletter V
-  \item \spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{19}
+  \item \spxentry{velocities\_from\_wcs()}\spxextra{cubespa.cubespa.CubeSPA method}, \hyperpage{23}
 
 \end{sphinxtheindex}

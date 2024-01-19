@@ -1145,6 +1145,15 @@ INPUT ./rgb_overlay.png
 INPUT ./rgb_overlay.png
 INPUT rgb_overlay.png
 INPUT ./rgb_overlay.png
+INPUT ./psf_overlay.png
+INPUT ./psf_overlay.png
+INPUT psf_overlay.png
+INPUT ./psf_overlay.png
+INPUT ./psf_overlay.png
+INPUT ./psf_overlay.png
+INPUT ./psf_overlay.png
+INPUT psf_overlay.png
+INPUT ./psf_overlay.png
 INPUT ./blob_spectra.png
 INPUT ./blob_spectra.png
 INPUT blob_spectra.png
@@ -1171,7 +1180,11 @@ INPUT cubespa.ind
 INPUT cubespa.aux
 INPUT ./cubespa.out
 INPUT ./cubespa.out
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb

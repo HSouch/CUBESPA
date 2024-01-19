@@ -29,3 +29,20 @@ For an RGB image, use the following instead:
 
 which plots CO contours on top of the HST RGB image, which for this region reveals
 a small compact stellar feature at the head of the  "blob".
+
+
+PSF Overlays for Sidelobe Checking
+----------------------------------
+
+If your cube/cleaning has a PSF that you have imported into cubespa with the ``psf=psf_fn`` feature, you can overplot it using the following
+code:
+
+>>> c = cubespa.CubeSPA(cube=cube_fn, psf=psf_fn, limits="auto")
+>>> cubespa.plotting.plot_psf_overlay(c, y0=102, x0=25)
+
+.. image:: plots/psf_overlay.png
+  :width: 400
+  :alt: Alternative text
+
+Note that in this case, the psf has been shifted down by 102 pixels, and to the right by 25 pixels. This overlay is especially helpful when hunting 
+for sidelobe features in a dataset, which can be revealed by looking at contours in the PSF.
