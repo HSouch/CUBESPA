@@ -12,6 +12,7 @@ class CubeSPA:
     """
 
     def __init__(self, cube, data_index=0, 
+                 psf = None,
                  mom_maps=None, additional_maps = [],
                  center = None, position_angle = None, eps=None,
                  vsys = 0,
@@ -40,6 +41,9 @@ class CubeSPA:
             self.cube_noise_level, self.cube_rms = utils.estimate_rms(self.cube.data, 
                                                                     utils.check_kwarg("cmin", 5, kwargs), 
                                                                     utils.check_kwarg("cmax", 5, kwargs))
+
+        self.psf = data.handle_data(psf, handler=data.load_data, data_index=data_index) if psf is not None else psf
+
 
         self.center = center
         self.position_angle = position_angle
@@ -110,17 +114,23 @@ class CubeSPA:
             return aper, spectrum
         
 
-class CubeComparison(CubeSPA):
+class CubeComparison:
 
-    def __init__(self, cube, comparison_cube, comp_mom_maps=None,
-                 data_index=0, mom_maps=None, 
-                 additional_maps=[], center=None, position_angle=None, 
-                 eps=None, limits=None, plot_dir=None, **kwargs) -> None:
-        super().__init__(cube, data_index, mom_maps, 
-                         additional_maps, center, position_angle, eps, limits, plot_dir, **kwargs)
-        
-        self.comparison_cube = data.handle_data(comparison_cube, 
-                                                handler=data.load_data, data_index=data_index)
-        self.comp_mom_maps = data.handle_data(comp_mom_maps, 
-                                              handler=data.load_moment_maps, data_index=data_index)
+    def __init__(self, cube1: CubeSPA, cube2: CubeSPA) -> None:
+        self.cube1 = cube1
+        self.cube2 = cube2
+
+
+    def create_spectra(self, position, size, return_products=False, plot=False):
+        aper = spectra.create_aperture(self, position, size)
+        spectrum = spectra.get_spectra(self.cube1.data, aper)
+
+        if plot:
+            plotting.spectra_plot(self, aper, spectrum)
+        if return_products:
+            return aper, spectrum
+
+    
+    def readout(self):
+        print(f'Cube 1: {self.cube1.cube.data.shape}    Cube 2: {self.cube2.cube.data.shape}')
 
