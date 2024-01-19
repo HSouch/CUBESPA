@@ -9,6 +9,7 @@ from numpy import round
 def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None, 
               minbeam=2., vmin=None, vmax=None,
               snr_lo_minch=3, snr_hi_minch=2,
+              edgech = 5, smooth_fwhm=None,
               outdir="", prefix="", **kwargs):
     """ Mask a cube using Tony Wong's MASKMOMENT routine.
         Please note that using the current version of MASKMOMENT on PyPi will not be successful, as the velocity ranges are not specified.
@@ -26,6 +27,8 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
         vmax (int, optional): Maximum velocity channel for masking. Defaults to None.
         snr_lo_minch (int, optional): Number of channels the lower threshold must span. Defaults to 3.
         snr_hi_minch (int, optional): Number of channels the higher threshold must span.. Defaults to 2.
+        edgech (int, optional): Number of channels at each end of velocity axis to estimate RMS from. Defaults to 5.
+        smooth_fwhm (float, optional): Size of kernel to smooth mask after it is created. Defaults to None (no smoothing.)
         outdir (str, optional): Output directory to place all files. Defaults to "".
         prefix (str, optional): Prefix for output files, for example if prefix="foo", then the moment 0 map will be "foo.mom0.fits.gz". Defaults to "".
     """
@@ -50,7 +53,9 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
             maskmoment(img_fits=cube_fn, gain_fits=gain_fn,
                        snr_hi=hi, snr_lo=lo,
                        snr_hi_minch=snr_hi_minch, snr_lo_minch=snr_lo_minch,
+                       edgech=edgech,
                        vmin=vmin, vmax=vmax,
+                       fwhm=smooth_fwhm,
                        outdir=outdir, outname=outname,
                        to_kelvin=False,
                        minbeam=minbeam)
