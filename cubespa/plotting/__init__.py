@@ -6,3 +6,6 @@ from .overlay_plots import *            # Plots for generating and displaying ov
 from .pvd_plots import *                # Plots for making and viewing position-velocity diagrams (PVDs)
 from .spectra_plots import *            # Plots for displaying and analyzing spectra
 from .util_plots import *               # Utility and diagnosing plots
+
+
+from .utils import *                    # Additional utilities like a custom pyplot style
