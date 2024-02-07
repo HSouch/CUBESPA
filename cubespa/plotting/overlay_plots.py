@@ -13,11 +13,12 @@ def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
 
     ys, xs = np.mgrid[:img_obj.data.shape[0], :img_obj.data.shape[1]]    
 
-    log_img = utils.check_kwarg("log", False, kwargs)
+    log_img = utils.check_kwarg("log_img", False, kwargs)
     colors = utils.check_kwarg("colors", "black", kwargs)
     levels = utils.check_kwarg("levels", None, kwargs)
     cmap = utils.check_kwarg("cmap", "Greys", kwargs)
-    filename = utils.check_kwarg("filename", None, kwargs)
+    outname = utils.check_kwarg("outname", None, kwargs)
+    img_levels = utils.check_kwarg("img_levels", [-3, 1] if log_img else [0, 0.1], kwargs)
 
     if log_img:
         plot_data = np.log10(img_obj.data)
@@ -26,7 +27,7 @@ def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
 
     figsize = utils.recommended_figsize(img_obj.data)
     plt.figure(figsize=figsize, facecolor="white")
-    plt.imshow(plot_data, origin="lower", cmap=cmap)
+    plt.imshow(plot_data, origin="lower", cmap=cmap, vmin=img_levels[0], vmax=img_levels[1])
     plt.contour(xs, ys, overlay_obj.data, levels=levels, colors=colors)
 
     plt.xlim(xmin, xmax)
@@ -36,11 +37,11 @@ def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
     plt.yticks([])
 
     # TODO: clean up the plotting functions for here and the rgb_overlay function
-    if filename is None:
+    if outname is None:
         plt.show()
         plt.close()
     else:
-        plt.savefig(filename, dpi=150)
+        plt.savefig(outname, dpi=150)
         plt.close()
 
 

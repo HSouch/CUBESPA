@@ -106,7 +106,7 @@ def spectra_comparison(cubecomp, a1, a2, s1, s2, chan_ranges=None, **kwargs):
 
     cube1, cube2 = cubecomp.cube1, cubecomp.cube2
 
-    colors = ["blue", "red", "orange", "green", "olive", "indigo", "lime"]
+    colors = ["blue", "red", "orange", "green", "olive", "indigo", "lime", "pink", "orangered", "slateblue"]
 
     ypad, ysep = 0.02, 0.005
 
@@ -128,6 +128,7 @@ def spectra_comparison(cubecomp, a1, a2, s1, s2, chan_ranges=None, **kwargs):
 
     align = utils.check_kwarg("align", None, kwargs)
     outname = utils.check_kwarg("outname", None, kwargs)
+    limits = utils.check_kwarg("limits", None, kwargs)
 
     chan_ranges = [None for _ in range(len(s1))] if chan_ranges is None else chan_ranges
 
@@ -144,14 +145,21 @@ def spectra_comparison(cubecomp, a1, a2, s1, s2, chan_ranges=None, **kwargs):
     for i, n in enumerate(s1):
         spec_axes.append(fig.add_axes([0.39, 0.01 + ypad +  i * ysep + i * height, 0.24, height]))
 
-    if cube1.limits is not None:
-        xmin, xmax, ymin, ymax = cube1.limits
+    if limits is not None:
+        xmin, xmax, ymin, ymax = limits
         img_axes[0].set_xlim(xmin, xmax)
         img_axes[0].set_ylim(ymin, ymax)
-    if cube2.limits is not None:
-        xmin, xmax, ymin, ymax = cube2.limits
         img_axes[1].set_xlim(xmin, xmax)
         img_axes[1].set_ylim(ymin, ymax)
+    else:
+        if cube1.limits is not None:
+            xmin, xmax, ymin, ymax = cube1.limits
+            img_axes[0].set_xlim(xmin, xmax)
+            img_axes[0].set_ylim(ymin, ymax)
+        if cube2.limits is not None:
+            xmin, xmax, ymin, ymax = cube2.limits
+            img_axes[1].set_xlim(xmin, xmax)
+            img_axes[1].set_ylim(ymin, ymax)
 
     levels = np.linspace(-100, 100, 10)
 

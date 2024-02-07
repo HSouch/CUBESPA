@@ -35,12 +35,16 @@ def get_spectra(cube, aper):
     Returns:
         _type_: _description_
     """
-    reg_flux = []
+    reg_flux, reg_max = [], []
     for frame in cube:
-        phot = aperture_photometry(frame, aper)
+        region = aper.to_mask(method="exact")[0].multiply(frame)
 
-        reg_flux.append(float(phot["aperture_sum"]))
-    return np.array(reg_flux) / aper.area
+        flux_sum, flux_max = np.nansum(region), np.nanmax(region)
+
+        reg_flux.append(flux_sum)
+        reg_max.append(flux_max)
+    
+    return {"FLUX": np.array(reg_flux) / aper.area, "MAX": np.array(reg_max)}
 
 
 def analyze_spectra(spec, sigma=2, cmin=None, cmax=None):
@@ -74,7 +78,7 @@ def multi_spec(cubespa_obj, spec_info):
         # print(position, shape)
 
         aper = create_aperture(cubespa_obj, position, shape)
-        spec = get_spectra(cubespa_obj.cube.data, aper)
+        spec = get_spectra(cubespa_obj.cube.data, aper)["FLUX"]
 
         aper_list.append(aper)
         spec_list.append(spec)
@@ -121,11 +125,13 @@ def align_apertures(aper_list, wcs1, wcs2):
     return apers_out 
 
 
-def spectra_comparison(cubecomp, aper_list, outname=None, plot_ticks=True, chan_ranges=None):
+def spectra_comparison(cubecomp, aper_list, outname=None, plot_ticks=True, chan_ranges=None, limits=None):
     print(len(aper_list))
     apertures_aligned = align_apertures(aper_list, cubecomp.cube1.mom_maps.mom0.wcs, cubecomp.cube2.mom_maps.mom0.wcs)
 
     a1, s1 = multi_spec(cubecomp.cube1, aper_list)
     a2, s2 = multi_spec(cubecomp.cube2, apertures_aligned)
 
-    plotting.spectra_comparison(cubecomp, a1, a2, s1, s2, cmap="rainbow", outname=outname, chan_ranges=chan_ranges, plot_ticks=plot_ticks)
+    plotting.spectra_comparison(cubecomp, a1, a2, s1, s2, cmap="rainbow", outname=outname, 
+                                limits = limits,
+                                chan_ranges=chan_ranges, plot_ticks=plot_ticks)

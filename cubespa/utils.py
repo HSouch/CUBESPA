@@ -4,7 +4,24 @@ from astropy.wcs import WCS
 import numpy as np
 
 import os
+
+
+def ellipse_coords(x, y, a, b, theta, num_points=100, b_is_ellipticity=False):
+
+    # Generate angles for sampling
+    angles = np.linspace(0, 2*np.pi, num_points)
     
+    # If b is supplied as an ellipticity (and not as the semiminor axis directly, calculate semiminor axis)
+    if b_is_ellipticity:
+        b = a * (1 - b)
+
+    # Parametric equation for the ellipse
+    x_coords = x + a * np.cos(angles) * np.cos(theta) - b * np.sin(angles) * np.sin(theta)
+    y_coords = y + a * np.cos(angles) * np.sin(theta) + b * np.sin(angles) * np.cos(theta)
+
+    # Return the sampled coordinates as a NumPy array
+    return x_coords, y_coords
+
 
 def line_endpoints(x0, y0, L, theta):
     # Convert the angle from degrees to radians
@@ -76,6 +93,11 @@ def bounds_from_moment_map(data, padding=0):
     xmin, xmax = np.min(non_nans[1]) - padding, np.max(non_nans[1]) + padding
 
     return int(xmin), int(xmax), int(ymin), int(ymax)
+
+
+def pad_limits(limits, padding):
+    xmin, xmax, ymin, ymax = limits
+    return [int(xmin - padding), int(xmax + padding), int(ymin - padding), int(ymax + padding)]
 
 
 def beam_area(bmaj, bmin):

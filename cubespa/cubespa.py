@@ -44,14 +44,28 @@ class CubeSPA:
 
         self.psf = data.handle_data(psf, handler=data.load_data, data_index=data_index) if psf is not None else psf
 
-
+        # TODO implement better handling of cx and cy. Right now assuming a 3D cube with Stokes. Can be better!
         self.center = center
+        if self.center is not None:
+            center_x, center_y, center_type = center
+            if center_type == "radec":
+                cx, cy = self.cube.wcs.wcs_world2pix(center_x, center_y, 0, 0, 0)[:2]
+                self.center = (float(cx), float(cy))
+            else:
+                self.center = (center_x, center_y)
+
+        # Position angle and ellipticty (1 - b/a) of the stellar disk, for flux analysis
         self.position_angle = position_angle
         self.eps = eps
 
         self.velocities = self.velocities_from_wcs(vsys=vsys)
         self.vsys = vsys
+        
+        # TODO Add this to a separate function with error handling
+        self.beam = [self.cube.header["BMAJ"], self.cube.header["BMIN"], self.cube.header["BPA"]]
+        
         self.beam_area = self.get_beam_area()
+        self.beam_area_arcsec = self.get_beam_area(in_pixels=False)
 
         self.mom_maps = data.handle_data(mom_maps, handler=data.load_moment_maps, data_index=data_index)
         self.additional_maps = additional_maps
@@ -83,14 +97,17 @@ class CubeSPA:
         return (np.array([vmin + i * vdelt for i in range(len(self.cube.data))]) / 1000) - vsys
     
 
-    def get_beam_area(self):
+    def get_beam_area(self, in_pixels=True):
         try:
             header, w = self.cube.header, self.cube.wcs
             
             delt = np.mean(np.abs(w.wcs.cdelt[:2]))
 
-            bmin, bmaj = header["BMIN"] / delt , header["BMAJ"] / delt
-            
+            if in_pixels:
+                bmin, bmaj = header["BMIN"] / delt , header["BMAJ"] / delt
+            else:
+                bmin, bmaj = header["BMIN"] * 3600 , header["BMAJ"] * 3600
+
             area = np.pi * bmaj * bmin / (4 * np.log(2))
         except Exception as e:
             print("Failed to get beam area:", e)
@@ -98,11 +115,23 @@ class CubeSPA:
             
         return area
     
+
+    def get_beam_coords(self, x0=0, y0=0):
+        try:
+            header, w = self.cube.header, self.cube.wcs
+            delt = np.mean(np.abs(w.wcs.cdelt[:2]))
+
+            bmin, bmaj, bpa = header["BMIN"] / delt , header["BMAJ"] / delt, np.deg2rad(header["BPA"] + 90)
+            return utils.ellipse_coords(x0, y0, bmaj / 2, bmin / 2, bpa)
+        
+        except Exception as e:
+            print("Failed to get beam coordinates", e)
+            
     # UTILITY FUNCTIONS
     def plot_moment_maps(self, use_limits=True, **kwargs):
-        filename = utils.check_kwarg("filename", None, kwargs)
+        outname = utils.check_kwarg("outname", None, kwargs)
 
-        plotting.moment_map_plot(self, use_limits=use_limits, filename=filename, kwargs=kwargs)
+        plotting.moment_map_plot(self, use_limits=use_limits, outname=outname, kwargs=kwargs)
 
     
     def create_spectra(self, position, size, return_products=False, plot=False):
@@ -112,7 +141,7 @@ class CubeSPA:
             plotting.spectra_plot(self, aper, spectrum)
         if return_products:
             return aper, spectrum
-        
+
 
 class CubeComparison:
 
