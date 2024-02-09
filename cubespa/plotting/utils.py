@@ -11,15 +11,15 @@ def reset_style():
 def pyplot_style():
     mpl.rc('text', usetex=True)
 
-    mpl.rcParams['xtick.major.size'] = 6
+    mpl.rcParams['xtick.major.size'] = 3
     mpl.rcParams['xtick.major.width'] = 2
-    mpl.rcParams['xtick.minor.size'] = 4
+    mpl.rcParams['xtick.minor.size'] = 2
     mpl.rcParams['xtick.minor.width'] = 1
-    mpl.rcParams['ytick.major.size'] = 6
-    mpl.rcParams['ytick.major.width'] = 3
-    mpl.rcParams['ytick.minor.size'] = 4
+    mpl.rcParams['ytick.major.size'] = 3
+    mpl.rcParams['ytick.major.width'] = 2
+    mpl.rcParams['ytick.minor.size'] = 2
     mpl.rcParams['ytick.minor.width'] = 1
-    mpl.rcParams['axes.linewidth'] = 2
+    mpl.rcParams['axes.linewidth'] = 1.5
 
     mpl.rc('xtick', labelsize=12)
     mpl.rc('ytick', labelsize=12)

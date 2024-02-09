@@ -62,8 +62,10 @@ class CubeSPA:
         self.vsys = vsys
         
         # TODO Add this to a separate function with error handling
-        self.beam = [self.cube.header["BMAJ"], self.cube.header["BMIN"], self.cube.header["BPA"]]
-        
+        self.beam = [self.cube.header["BMIN"], self.cube.header["BMAJ"], self.cube.header["BPA"]]
+        self.beam_pix = self.get_beam_pix()
+
+
         self.beam_area = self.get_beam_area()
         self.beam_area_arcsec = self.get_beam_area(in_pixels=False)
 
@@ -114,7 +116,18 @@ class CubeSPA:
             area = 1
             
         return area
-    
+
+    def get_beam_pix(self):
+        try:
+            header, w = self.cube.header, self.cube.wcs
+            
+            delt = np.mean(np.abs(w.wcs.cdelt[:2]))
+            bmaj, bmin, _ = self.beam
+            bmaj /= delt
+            bmin /= delt
+            return bmaj, bmin
+        except:
+            return 1, 1
 
     def get_beam_coords(self, x0=0, y0=0):
         try:

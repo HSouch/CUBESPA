@@ -4,6 +4,7 @@ from astropy.wcs import WCS
 import numpy as np
 
 import os
+import pickle
 
 
 def ellipse_coords(x, y, a, b, theta, num_points=100, b_is_ellipticity=False):
@@ -252,3 +253,14 @@ def H2_Mass(SCO, D_L=100., z_gal=0.01, freq=220., a_CO=3.2, R_21=0.8):
     MH2 = 1.34 * (a_CO / R_21) * LCO
 
     return MH2
+
+
+def save_pickle(out_object, filename):
+    with open(filename, 'wb') as handle:
+        pickle.dump(out_object, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def load_pickle(filename):
+    with open(filename, 'rb') as handle:
+        out_object = pickle.load(handle)
+    return out_object
