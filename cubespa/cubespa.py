@@ -55,7 +55,7 @@ class CubeSPA:
                 self.center = (center_x, center_y)
 
         # Position angle and ellipticty (1 - b/a) of the stellar disk, for flux analysis
-        self.position_angle = position_angle
+        self.position_angle = np.deg2rad(position_angle)
         self.eps = eps
 
         self.velocities = self.velocities_from_wcs(vsys=vsys)
