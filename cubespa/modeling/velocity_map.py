@@ -64,7 +64,7 @@ class VelocityModel:
 
     def gen_model(self, velocity_model, fill_value=np.nan, **vmod_kwargs):
         xs, ys = np.arange(0, self.shape[0]).astype(float), np.arange(0, self.shape[1]).astype(float)
-        X, Y = np.meshgrid(ys, xs)
+        Y, X = np.meshgrid(ys, xs)
 
         X -= self.x0
         Y -= self.y0
@@ -77,7 +77,7 @@ class VelocityModel:
         theta = np.arctan2(x, y)
         
         vr = self.vsys + vcirc * np.sin(self.inc) * np.cos(theta)
-        vr[r > self.rmax] = fill_value
+        vr[r > self.rmax * 2] = fill_value
 
         return vr
     
