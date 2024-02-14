@@ -14,7 +14,7 @@ class CubeSPA:
     def __init__(self, cube, data_index=0, 
                  psf = None,
                  mom_maps=None, additional_maps = [],
-                 center = None, position_angle = None, eps=None,
+                 center = None, position_angle = 0, eps=0,
                  vsys = 0,
                  limits = None, 
                  plot_dir = None,
