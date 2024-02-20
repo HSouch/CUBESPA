@@ -68,6 +68,19 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
     mom2_ax = ax[2].imshow(mom2, origin="lower", cmap="magma", vmin=0, vmax=50)
     mom2_cb = plt.colorbar(mappable=mom2_ax, ax=ax[2], location="top", label="Velocity Dispersion [km/s]")
 
+    for axis in ax:
+        axis.set_xticks([])
+        axis.set_yticks([])
+
+    # PLot beam if possible
+    if cubespa_obj.beam_pix is not None:
+        bmaj, bmin, bpa = cubespa_obj.beam_pix
+        
+        beam_xs, beam_ys = utils.ellipse_coords(xmin + dx/12, ymin + dy/12, 
+                                                bmaj / 2, bmin/2, np.deg2rad(bpa), num_points=30)
+        for axis in ax:
+            axis.plot(beam_xs, beam_ys, color="black", lw=1)
+
     plt.tight_layout()
 
     if outname is None:

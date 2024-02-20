@@ -2,7 +2,7 @@ from . import data, utils, spectra
 
 from . import plotting
 
-import os
+import os, logging
 
 import numpy as np
 
@@ -62,15 +62,21 @@ class CubeSPA:
         self.vsys = vsys
         
         # TODO Add this to a separate function with error handling
-        self.beam = [self.cube.header["BMIN"], self.cube.header["BMAJ"], self.cube.header["BPA"]]
-        self.beam_pix = self.get_beam_pix()
+        try:
+            self.beam = [self.cube.header["BMIN"], self.cube.header["BMAJ"], self.cube.header["BPA"]]
+            self.beam_pix = self.get_beam_pix()
 
+            self.beam_area = self.get_beam_area()
+            self.beam_area_arcsec = self.get_beam_area(in_pixels=False)
+        except KeyError: 
+            logging.warn(f"Unable to get beam for {cube}")
+            self.beam = self.beam_pix = self.beam_area_arcsec = None
 
-        self.beam_area = self.get_beam_area()
-        self.beam_area_arcsec = self.get_beam_area(in_pixels=False)
-
-        self.mom_maps = data.handle_data(mom_maps, handler=data.load_moment_maps, data_index=data_index)
-        self.additional_maps = additional_maps
+        try:
+            self.mom_maps = data.handle_data(mom_maps, handler=data.load_moment_maps, data_index=data_index)
+            self.additional_maps = additional_maps
+        except Exception as e:
+            logging.warn(f'Failed to load moment maps for {cube}\n{e}')
 
         if limits == "auto":
             if "padding" in kwargs.keys():
@@ -122,10 +128,10 @@ class CubeSPA:
             header, w = self.cube.header, self.cube.wcs
             
             delt = np.mean(np.abs(w.wcs.cdelt[:2]))
-            bmaj, bmin, _ = self.beam
+            bmaj, bmin, bpa = self.beam
             bmaj /= delt
             bmin /= delt
-            return bmaj, bmin
+            return bmaj, bmin, bpa
         except:
             return 1, 1
 
