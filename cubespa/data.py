@@ -5,18 +5,22 @@ import copy
 from . import utils
 
 from astropy.wcs import WCS
-
+from astropy.convolution import Tophat2DKernel
 from astropy.io import fits
+
+from scipy.signal import convolve2d
 
 from . import plotting
 
 
 class DataSet:
-    def __init__(self, data=None, wcs=None, header=None, label=None):
+    def __init__(self, data=None, wcs=None, header=None, label=None, dtype=None):
         self.data = data
         self.wcs = wcs
         self.header = header
         self.label = label
+
+        self.dtype = dtype
 
 
 class RGBImage(DataSet):
@@ -42,7 +46,7 @@ def load_data(filename, data_index=0, rgb_index = None, label=None):
             
             if rgb_index is None:
                 data = hdu.data
-                if len(data.shape) == 4:
+                if len(data.shape) == 4:        # Drop Stokes parameter (could remove this later maybe)
                     data = data[0]
                 wcs = WCS(hdu.header)
             else:
@@ -137,3 +141,33 @@ def gen_cutout(cubespa_obj, cent, size, show_bbox=False):
     cutout.mom_maps.mom2.data = new_mom2
 
     return cutout
+
+
+def gen_bg_mask(a, thresh_min=None, dilate=None, dilate_thresh = 0.7):
+    """Generate mask from a map, assuming emission is either nan or below some threshold value.
+    Mask can be dilated using the dilate parameter, and be further adjusted with dilate_thresh
+
+    Args:
+        a (ndarray): Input data array
+        thresh_min (float, optional): Minimum threshold to keep unmasked. Defaults to None.
+        dilate (int, optional): Side of tophat kernel to dilate mask. Defaults to None.
+        dilate_thresh (float, optional): Threshold (between 0 and 1) to include "edge areas" in the dilation mask. 
+        A higher value corresponds to a stronger dilation. Defaults to 0.7.
+
+    Returns:
+        ndarray: Boolean mask with same shape as input array.
+    """
+
+    mask = np.zeros(a.shape)
+    mask[np.isnan(a)] = 1
+
+    if thresh_min is not None:
+        mask[a < thresh_min] = 1
+
+    if dilate is not None:
+        kernel = Tophat2DKernel(dilate)
+        mask = convolve2d(mask, kernel, mode="same")
+        mask[mask < dilate_thresh] = 0
+        mask[mask >= dilate_thresh] = 1
+
+    return mask.astype(bool)
