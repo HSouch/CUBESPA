@@ -5,6 +5,9 @@ from .. import data, utils
 from matplotlib import pyplot as plt
 
 
+__all__ = ["overlay_plot", "rgb_overlay", "plot_psf_overlay"]
+
+
 def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
     if lims is None:
         xmin, xmax, ymin, ymax = 0, img_obj.data.shape[1], 0, img_obj.data.shape[0]

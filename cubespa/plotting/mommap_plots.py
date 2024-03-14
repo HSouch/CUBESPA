@@ -31,10 +31,13 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
 
     mom0_lims = utils.check_kwarg("mom0_lims", [-3, 1.1], kwargs)
 
+    figsize=utils.check_kwarg("figsize", (12, 7), kwargs)
+    top=utils.check_kwarg("top", 0.95, kwargs)
+
     beam_area = cubespa_obj.beam_area
     mom0_units = r'$\log_{10}($ I [Jy beam$^{-1}$ km/s ])'
 
-    fig, ax = plt.subplots(1,3, figsize=(12,7), sharey=True, facecolor="white")
+    fig, ax = plt.subplots(1,3, figsize=figsize, sharey=True, facecolor="white")
 
     if use_limits:
         xmin, xmax, ymin, ymax = cubespa_obj.limits
@@ -82,6 +85,7 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
             axis.plot(beam_xs, beam_ys, color="black", lw=1)
 
     plt.tight_layout()
+    plt.subplots_adjust(top=top)
 
     if outname is None:
         plt.show()

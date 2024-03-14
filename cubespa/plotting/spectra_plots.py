@@ -65,6 +65,7 @@ def multispec_plot(cubespa_obj, aper_list, spec_list, **kwargs):
     cmap = utils.check_kwarg("cmap", "viridis", kwargs)
     plot_ticks = utils.check_kwarg("plot_ticks", True, kwargs)
 
+    limits = utils.check_kwarg("limits", None, kwargs)
 
     fig = plt.figure(figsize=(11.5, 5), facecolor="white")
     
@@ -75,7 +76,10 @@ def multispec_plot(cubespa_obj, aper_list, spec_list, **kwargs):
         spec_axes.append(fig.add_axes([0.45, ypad +  i * ysep + i * height, 0.50, height]))
 
     img_ax.imshow(cubespa_obj.mom_maps.mom1.data, origin="lower", cmap=cmap)
-
+    if limits is not None:
+        xmin, xmax, ymin, ymax = limits
+        img_ax.set_xlim(xmin, xmax)
+        img_ax.set_ylim(ymin, ymax)
 
     for i in range(len(spec_list)):
         spec_axes[i].stairs(spec_list[i][:-1], velocities, color=colors[i], lw=1)
