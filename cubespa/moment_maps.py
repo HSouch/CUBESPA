@@ -39,7 +39,6 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
     keep_uncertainties = utils.check_kwarg("keep_uncertainties", True, kwargs)
     keep_fluxcsv = utils.check_kwarg("keep_fluxcsv", False, kwargs)
 
-
     t_total_init = time.time()
 
     for lo in snr_lo:

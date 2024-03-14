@@ -143,7 +143,12 @@ def normalize(a, clip_low = None, clip_high=None, stretch=None):
 
     if stretch == "square":
         a_norm = a_norm * a_norm
-
+    if stretch == "log":
+        a_norm = np.log10(a_norm)
+    if stretch == "asin":
+        a_norm = np.arcsin(a_norm)
+    if stretch == "asinh":
+        a_norm = np.arcsinh(a_norm)
 
     return a_norm
 
