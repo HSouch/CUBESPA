@@ -1,6 +1,9 @@
 import numpy as np
 from .. import utils
 
+from astropy.io import fits
+
+
 def brandt_curve(rs, kwargs):
     Rmax = utils.check_kwarg("rmax", 50, kwargs)
     Vmax = utils.check_kwarg("vmax", 50, kwargs)
@@ -60,6 +63,8 @@ class VelocityModel:
         self.vsys = vsys if vsys is not None else 0
         self.rmax = rmax
 
+        self.vr = None
+
 
 
     def gen_model(self, velocity_model, fill_value=np.nan, **vmod_kwargs):
@@ -78,6 +83,20 @@ class VelocityModel:
         
         vr = self.vsys + vcirc * np.sin(self.inc) * np.cos(theta)
         vr[r > self.rmax * 2] = fill_value
-
-        return vr
+        self.vr = vr
+        return self.vr
     
+    def write_model(self, outname, to_fits=False, overwrite=True):
+        """ Save the velocity model to a FITS file or Pickle file, depending on user preferences
+
+        Args:
+            filename (str): Output filename
+            to_fits (bool, optional): Whether to save to FITS format. Defaults to False.
+            overwrite (bool, optional): If saving to fits format, whether to overwrite output if already saved. Defaults to True.
+        """
+        if to_fits:
+            hdul = fits.HDUList()
+            hdul.append(fits.ImageHDU(data=self.vr))
+            hdul.writeto(outname, overwrite=overwrite)
+        else:
+            utils.save_pickle(self.vr, outname)
