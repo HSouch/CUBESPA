@@ -48,7 +48,7 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
         plt.ylim(ymin, ymax + 0.1 * dy)
     else:
         xmin, ymin = 0, 0
-        ymax, xmax = mom0.shape
+        ymax, xmax = mom0.shape             #TODO check if this is right (should it be xmax, ymax)
         dy, dx = mom0.shape
 
     mom0_ax = ax[0].imshow(np.log10(mom0), origin="lower", cmap="Greys", vmin=mom0_lims[0], vmax=mom0_lims[1])

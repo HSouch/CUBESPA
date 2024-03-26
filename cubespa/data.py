@@ -115,7 +115,7 @@ def gen_cutout(cubespa_obj, cent, size, show_bbox=False):
 
     if type(size) is int:
         size = (size, size)
-
+    
     xmin, xmax = cent[1] - size[0], cent[1] + size[0]
     ymin, ymax = cent[0] - size[1], cent[0] + size[1]
 
