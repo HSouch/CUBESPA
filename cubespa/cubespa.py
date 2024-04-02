@@ -148,9 +148,9 @@ class CubeSPA:
             
     # UTILITY FUNCTIONS
     def plot_moment_maps(self, use_limits=True, **kwargs):
-        outname = utils.check_kwarg("outname", None, kwargs)
+        outname = kwargs.get("outname", None)
 
-        plotting.moment_map_plot(self, use_limits=use_limits, outname=outname, kwargs=kwargs)
+        plotting.moment_map_plot(self, use_limits=use_limits, **kwargs)
 
     
     def create_spectra(self, position, size, return_products=False, plot=False):
