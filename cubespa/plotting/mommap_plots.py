@@ -37,7 +37,9 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
     beam_area = cubespa_obj.beam_area
     mom0_units = r'$\log_{10}($ I [Jy beam$^{-1}$ km/s ])'
 
-    fig, ax = plt.subplots(1,3, figsize=figsize, sharey=True, facecolor="white")
+    mom1_vcontours = utils.check_kwarg("mom1_vcontours", 10, kwargs)
+
+    fig, ax = plt.subplots(1,3, figsize=(12,7), sharey=True, facecolor="white")
 
     if use_limits:
         xmin, xmax, ymin, ymax = cubespa_obj.limits
@@ -64,7 +66,7 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
     # ax[1].contour(ys, xs, mom0, origin="lower", colors="white", 
     #               levels=[0.08, 0.1, 0.5, 1, 2, 2.5], linewidths=1.5)
     ax[1].contour(ys, xs, mom1 - v_offset, origin="lower", colors="black", linewidths=1.5, 
-                levels=np.linspace(-100, 100, 10))
+                levels=np.linspace(-100, 100, mom1_vcontours))
     mom1_cb = plt.colorbar(mappable=mom1_ax, ax=ax[1], location="top", label="Velocity [km/s]")
 
 
