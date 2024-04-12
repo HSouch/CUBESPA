@@ -36,8 +36,8 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
     snr_lo = [snr_lo] if type(snr_lo) in (int, float) else snr_lo
     snr_hi = [snr_hi] if type(snr_hi) in (int, float) else snr_hi
 
-    keep_uncertainties = utils.check_kwarg("keep_uncertainties", True, kwargs)
-    keep_fluxcsv = utils.check_kwarg("keep_fluxcsv", False, kwargs)
+    keep_uncertainties = kwargs.get("keep_uncertainties", True)
+    keep_fluxcsv = kwargs.get("keep_fluxcsv", False)
 
     t_total_init = time.time()
 
