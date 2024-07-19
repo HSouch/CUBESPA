@@ -8,8 +8,8 @@ from matplotlib import pyplot as plt
 
 def pvd_plot(cubespa_obj, pvd, vmin=-200, vmax=200, vstep=25, filename=None, **kwargs):
 
-    cmap = utils.check_kwarg("cmap", "viridis", kwargs)
-    pvd_color = utils.check_kwarg("pvd_color", "red", kwargs)
+    cmap = kwargs.get("cmap", "viridis")
+    pvd_color = kwargs.get("pvd_color", "red")
 
     v_interp = interp1d(cubespa_obj.velocities - 43, np.arange(len(cubespa_obj.velocities)), 
                     bounds_error=False, fill_value="extrapolate")

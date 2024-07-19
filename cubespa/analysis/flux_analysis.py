@@ -28,7 +28,7 @@ def line_points(cent, length, angle):
 
 
 def theta_list(theta_0, clockwise=False, n_samples=90, plot=False, **kwargs):
-    outname = utils.check_kwarg("outname", None, kwargs)
+    outname = kwargs.get("outname", None)
 
     theta_max = theta_0 + 2*np.pi
 

@@ -62,10 +62,9 @@ def multispec_plot(cubespa_obj, aper_list, spec_list, **kwargs):
         velocities = cubespa_obj.velocities
         xlabel = "Velocity [km/s]"
 
-    cmap = utils.check_kwarg("cmap", "viridis", kwargs)
-    plot_ticks = utils.check_kwarg("plot_ticks", True, kwargs)
-
-    limits = utils.check_kwarg("limits", None, kwargs)
+    cmap = kwargs.get("cmap", "viridis")
+    plot_ticks = kwargs.get("plot_ticks", True)
+    limits = kwargs.get("limits", None)
 
     fig = plt.figure(figsize=(11.5, 5), facecolor="white")
     
@@ -126,13 +125,12 @@ def spectra_comparison(cubecomp, a1, a2, s1, s2, chan_ranges=None, **kwargs):
     ys1, xs1 = np.mgrid[:shape1[0], :shape1[1]]
     ys2, xs2 = np.mgrid[:shape2[0], :shape2[1]]
 
+    cmap = kwargs.get("cmap", "viridis")
+    plot_ticks = kwargs.get("plot_ticks", True)
 
-    cmap = utils.check_kwarg("cmap", "viridis", kwargs)
-    plot_ticks = utils.check_kwarg("plot_ticks", True, kwargs)
-
-    align = utils.check_kwarg("align", None, kwargs)
-    outname = utils.check_kwarg("outname", None, kwargs)
-    limits = utils.check_kwarg("limits", None, kwargs)
+    align = kwargs.get("align", None)
+    outname = kwargs.get("outname", None)
+    limits = kwargs.get("limits", None)
 
     chan_ranges = [None for _ in range(len(s1))] if chan_ranges is None else chan_ranges
 

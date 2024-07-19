@@ -23,7 +23,8 @@ def moment_map_plot(cubespa_obj, outname = None, use_limits=True, **kwargs):
 
     xs, ys = np.mgrid[:mom0.shape[0], :mom0.shape[1]]
     
-    v_offset = utils.check_kwarg("vsys", None, kwargs)
+    v_offset = kwargs.get("vsys", None)
+
     if v_offset is None:
         v_offset = cubespa_obj.vsys
 

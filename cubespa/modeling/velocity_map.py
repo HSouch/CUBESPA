@@ -5,9 +5,10 @@ from astropy.io import fits
 
 
 def brandt_curve(rs, kwargs):
-    Rmax = utils.check_kwarg("rmax", 50, kwargs)
-    Vmax = utils.check_kwarg("vmax", 50, kwargs)
-    n = utils.check_kwarg("n", 1, kwargs)
+
+    Rmax = kwargs.get("rmax", 50)
+    Vmax = kwargs.get("vmax", 50)
+    n = kwargs.get("n", 1)
 
     R_norm = rs/Rmax
     

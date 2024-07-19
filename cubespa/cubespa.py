@@ -38,9 +38,9 @@ class CubeSPA:
         self.cube = data.handle_data(cube, handler=data.load_data, data_index=data_index)
         
         if self.cube is not None:
-            self.cube_noise_level, self.cube_rms = utils.estimate_rms(self.cube.data, 
-                                                                    utils.check_kwarg("cmin", 5, kwargs), 
-                                                                    utils.check_kwarg("cmax", 5, kwargs))
+            self.cube_noise_level, self.cube_rms = utils.estimate_rms(self.cube.data,
+                                                                      kwargs.get("cmin", 5),
+                                                                        kwargs.get("cmax", 5))
 
         self.psf = data.handle_data(psf, handler=data.load_data, data_index=data_index) if psf is not None else psf
 

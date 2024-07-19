@@ -225,15 +225,7 @@ def check_and_make_dir(directory):
     if not os.path.isdir(path):
         os.makedirs(path, exist_ok=True)
     return directory
-
-
-
-def check_kwarg(key, default, kwargs: dict):
-    if key in kwargs.keys(): 
-        return kwargs[key]
-    else: 
-        return default
-    
+   
 
 def create_channel_ranges(n):
     """ Create an array of None values of length n (to initialize channel ranges for spectral analysis) """

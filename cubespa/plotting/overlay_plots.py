@@ -15,13 +15,12 @@ def overlay_plot(img_obj, overlay_obj, lims=None,  **kwargs):
         xmin, xmax, ymin, ymax = lims
 
     ys, xs = np.mgrid[:img_obj.data.shape[0], :img_obj.data.shape[1]]    
-
-    log_img = utils.check_kwarg("log_img", False, kwargs)
-    colors = utils.check_kwarg("colors", "black", kwargs)
-    levels = utils.check_kwarg("levels", None, kwargs)
-    cmap = utils.check_kwarg("cmap", "Greys", kwargs)
-    outname = utils.check_kwarg("outname", None, kwargs)
-    img_levels = utils.check_kwarg("img_levels", [-3, 1] if log_img else [0, 0.1], kwargs)
+    log_img = kwargs.get("log_img", False)
+    colors = kwargs.get("colors", "black")
+    levels = kwargs.get("levels", None)
+    cmap = kwargs.get("cmap", "Greys")
+    outname = kwargs.get("outname", None)
+    img_levels = kwargs.get("img_levels", [-3, 1] if log_img else [0, 0.1])
 
     if log_img:
         plot_data = np.log10(img_obj.data)
@@ -89,8 +88,8 @@ def plot_psf_overlay(cubespa_obj, psf_conv=None, x0=0, y0 = 0, **kwargs):
     figsize = utils.recommended_figsize(cubespa_obj.mom_maps.mom0.data)
     plt.figure(figsize=figsize, facecolor="white")
 
-    show_ticks = utils.check_kwarg("show_xticks", True, kwargs)
-    levels = np.array(utils.check_kwarg("levels", [0.02, 0.05, 0.1], kwargs))
+    show_ticks = kwargs.get("show_xticks", True)
+    levels = np.array(kwargs.get("levels", [0.02, 0.05, 0.1]))
 
     xmin, xmax, ymin, ymax = cubespa_obj.limits
     dx, dy = xmax-xmin, ymax-ymin
