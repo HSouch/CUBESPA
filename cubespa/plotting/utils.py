@@ -60,3 +60,10 @@ def lavender_cmap(step_1=175):
 
     new_cmap = ListedColormap(full_arr)
     return new_cmap
+
+
+def plot_compass(ax, x, y, size, color="black", **kwargs):
+    ax.plot([x, x - size], [y, y], color=color, lw=kwargs.get("lw", 2))
+    ax.text(x - size, y, "E", color=color, fontsize=kwargs.get("fontsize", 18), ha="right", va="center")
+    ax.plot([x, x], [y, y - size], color=color, lw=kwargs.get("lw", 2))
+    ax.text(x, y - size, "N", color=color, fontsize=kwargs.get("fontsize", 18), ha="center", va="bottom")
