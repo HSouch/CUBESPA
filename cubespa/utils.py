@@ -252,6 +252,10 @@ def H2_Mass(SCO, D_L=100., z_gal=0.01, freq=220., a_CO=3.2, R_21=0.8):
     return MH2
 
 
+def get_arcconv(wcs):
+    return np.abs(wcs.pixel_scale_matrix[1,1] * 3600)
+
+
 def save_pickle(out_object, filename):
     with open(filename, 'wb') as handle:
         pickle.dump(out_object, handle, protocol=pickle.HIGHEST_PROTOCOL)
