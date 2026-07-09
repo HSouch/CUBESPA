@@ -34,7 +34,8 @@ class CubeSPA:
                 If "auto", will try to automatically generate from moment maps.
             plot_dir (str, optional): Directory to place plots. Defaults to None.
         """
-        
+        self.name = kwargs.get("name", "")
+
         self.cube = data.handle_data(cube, handler=data.load_data, data_index=data_index)
         
         if self.cube is not None:
@@ -58,8 +59,9 @@ class CubeSPA:
         self.position_angle = np.deg2rad(position_angle)
         self.eps = eps
 
-        self.velocities = self.velocities_from_wcs(vsys=vsys)
         self.vsys = vsys
+        self.velocities = self.velocities_from_wcs()
+        self.arcconv = self.arcconv_from_wcs()
         
         # TODO Add this to a separate function with error handling
         try:
@@ -85,13 +87,19 @@ class CubeSPA:
                 padding = 10
 
             self.limits = utils.bounds_from_moment_map(self.mom_maps.mom0.data, padding = padding)
-        
+        else:
+            self.limits = limits
+
+            
         if plot_dir is not None:
             self.plot_dir = plot_dir
-            self.load_dir(plot_dir)
+            self.gen_dirs(plot_dir)
+        
+
+
     
 
-    def load_dir(path):
+    def gen_dirs(path):
         if not os.path.isdir(path):
             os.makedirs(path, exist_ok=True)
         else:
@@ -103,6 +111,10 @@ class CubeSPA:
         vdelt = self.cube.wcs.wcs.cdelt[2]
 
         return (np.array([vmin + i * vdelt for i in range(len(self.cube.data))]) / 1000) - vsys
+    
+
+    def arcconv_from_wcs(self):
+        return self.cube.arcconv_from_wcs()
     
 
     def get_beam_area(self, in_pixels=True):
@@ -150,7 +162,7 @@ class CubeSPA:
     def plot_moment_maps(self, use_limits=True, **kwargs):
         outname = kwargs.get("outname", None)
 
-        plotting.moment_map_plot(self, use_limits=use_limits, **kwargs)
+        return(plotting.moment_map_plot(self, use_limits=use_limits, **kwargs))
 
     
     def create_spectra(self, position, size, return_products=False, plot=False):
@@ -160,6 +172,11 @@ class CubeSPA:
             plotting.spectra_plot(self, aper, spectrum)
         if return_products:
             return aper, spectrum
+    
+
+    def apply_limits(self, axis, pad=0):
+        axis.set_xlim(self.limits[0] - pad, self.limits[1] + pad)
+        axis.set_ylim(self.limits[2] - pad, self.limits[3] + pad)
 
 
 class CubeComparison:
