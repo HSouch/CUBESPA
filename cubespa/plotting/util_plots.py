@@ -50,7 +50,7 @@ def plot_rgb(rgb, lims=None, outname=None):
     """
     figsize = utils.recommended_figsize(rgb)
 
-    plt.figure(figsize=figsize)
+    fig = plt.figure(figsize=figsize)
     plt.imshow(rgb, origin="lower")
 
     if lims is not None:
@@ -64,4 +64,4 @@ def plot_rgb(rgb, lims=None, outname=None):
         outname = utils.check_and_make_dir(outname)
         plt.savefig(outname, dpi=200)
     else:
-        plt.show()
+        return fig
