@@ -76,6 +76,8 @@ def multi_spec(cubespa_obj, spec_info):
     for spec in spec_info:
         position, shape = spec
         # print(position, shape)
+        if type(shape) not in [list, tuple]:
+            shape = [shape, shape]
 
         aper = create_aperture(cubespa_obj, position, shape)
         spec = get_spectra(cubespa_obj.cube.data, aper)["FLUX"]
