@@ -30,7 +30,8 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
         edgech (int, optional): Number of channels at each end of velocity axis to estimate RMS from. Defaults to 5.
         smooth_fwhm (float, optional): Size of kernel to smooth mask after it is created. Defaults to None (no smoothing.)
         outdir (str, optional): Output directory to place all files. Defaults to "".
-        prefix (str, optional): Prefix for output files, for example if prefix="foo", then the moment 0 map will be "foo.mom0.fits.gz". Defaults to "".
+        prefix (str, optional): Prefix for output files, for example if prefix="foo", 
+        then the moment 0 map will be "foo.mom0.fits.gz". Defaults to "".
     """
 
     snr_lo = [snr_lo] if type(snr_lo) in (int, float) else snr_lo
@@ -80,3 +81,17 @@ def mask_cube(cube_fn, snr_lo=3., snr_hi=4., gain_fn=None,
 
 
     print(f'\n Total Time Elapsed:  {round((time.time() -  t_total_init) / 60, 2)} minutes ')
+
+    return {
+        "prefix": prefix,
+        "snr_lo": snr_lo,
+        "snr_hi": snr_hi,
+        "snr_lo_minch": snr_lo_minch,
+        "snr_hi_minch": snr_hi_minch,
+        "minbeam": minbeam,
+        "outdir": outdir,
+        "vmin": vmin,
+        "vmax": vmax,
+        "edgech": edgech,
+        "smooth_fwhm": smooth_fwhm
+    }
