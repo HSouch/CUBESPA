@@ -14,13 +14,19 @@ from . import plotting
 
 
 class DataSet:
-    def __init__(self, data=None, wcs=None, header=None, label=None, dtype=None):
+    def __init__(self, filename=None, data=None, wcs=None, header=None, label=None, dtype=None):
+        self.filename = filename
+
         self.data = data
         self.wcs = wcs
         self.header = header
         self.label = label
 
         self.dtype = dtype
+    
+    def arcconv_from_wcs(self):
+        wcs = self.wcs.celestial
+        return np.sqrt(wcs.pixel_scale_matrix[0,0]**2 + wcs.pixel_scale_matrix[1,0]**2) * 3600
 
 
 class RGBImage(DataSet):
@@ -39,7 +45,7 @@ class MomentMaps:
             self.mom2 = load_data(mom2, data_index=data_index)
 
 
-def load_data(filename, data_index=0, rgb_index = None, label=None):
+def load_data(filename, data_index=0, rgb_index = None, label=None, verbose=True):
     try:
         with fits.open(filename) as HDUList:
             hdu = HDUList[data_index]
@@ -53,14 +59,15 @@ def load_data(filename, data_index=0, rgb_index = None, label=None):
                 data = hdu.data[rgb_index]
                 wcs = WCS(hdu.header).dropaxis(2)
 
-            out = DataSet(data=data, wcs=wcs, header=hdu.header, label=label)
+            out = DataSet(filename=filename, data=data, wcs=wcs, header=hdu.header, label=label)
             return out
     except Exception as e:
-        print(f"Error loading data: {e}")
+        if verbose:
+            print(f"Error loading data: {e}")
         return None
 
 
-def load_moment_maps(topdir, data_index=0):
+def load_moment_maps(topdir, data_index=0, verbose=True):
     try:
         mom_0_fn = topdir + ".mom0.fits.gz"
         mom_1_fn = topdir + ".mom1.fits.gz"
@@ -69,12 +76,13 @@ def load_moment_maps(topdir, data_index=0):
         moment_maps = MomentMaps(mom0=mom_0_fn, mom1=mom_1_fn, mom2=mom_2_fn, data_index=data_index)
         return moment_maps
     except Exception as e:
-        print(f"Error loading Moment Maps: {e}")
+        if verbose:
+            print(f"Error loading Moment Maps: {e}")
         return None
 
 
 
-def handle_data(data, handler, data_index=0):
+def handle_data(data, handler, data_index=0, verbose=True):
     """ Handle incoming data for the CubeSPA object. 
     If not a string, CubeSPA will return the data enclosed in a dataset without additional info.
     Args:
