@@ -27,6 +27,11 @@ class DataSet:
     def arcconv_from_wcs(self):
         wcs = self.wcs.celestial
         return np.sqrt(wcs.pixel_scale_matrix[0,0]**2 + wcs.pixel_scale_matrix[1,0]**2) * 3600
+    
+    def __repr__(self):
+        dstring = str(self.data.shape) if self.data is not None else "NONE"
+
+        return f"Data: {self.filename} | {dstring}"
 
 
 class RGBImage(DataSet):
@@ -34,15 +39,26 @@ class RGBImage(DataSet):
         super().__init__(data, wcs, header, label)
     
 
-
 class MomentMaps:
-    def __init__(self, mom0=None, mom1=None, mom2=None, data_index=0):
-        if type(mom0) == str:
-            self.mom0 = load_data(mom0, data_index=data_index)
-        if type(mom1) == str:
-            self.mom1 = load_data(mom1, data_index=data_index)
-        if type(mom2) == str:
-            self.mom2 = load_data(mom2, data_index=data_index)
+    def __init__(self, mom0=None, mom1=None, mom2=None,
+                 emom0=None, emom1=None, emom2=None,
+                   data_index=0):
+        
+        for attr, val in zip(["mom0", "mom1", "mom2", "emom0", "emom1", "emom2"],
+                              [mom0, mom1, mom2, emom0, emom1, emom2]):
+            if type(val) == str:
+                self.__setattr__(attr, load_data(val, data_index=data_index))
+            else:
+                self.__setattr__(attr, None)
+
+
+    def __repr__(self):
+        outstring = ""
+        for attr in ["mom0", "mom1", "mom2", "emom0", "emom1", "emom2"]:
+            attr = self.__getattribute__(attr)
+            if isinstance(attr, DataSet):
+                outstring += f"{attr.__repr__()}\n"
+        return outstring
 
 
 def load_data(filename, data_index=0, rgb_index = None, label=None, verbose=True):
@@ -67,13 +83,19 @@ def load_data(filename, data_index=0, rgb_index = None, label=None, verbose=True
         return None
 
 
-def load_moment_maps(topdir, data_index=0, verbose=True):
+def load_moment_maps(topdir, data_index=0, load_error_maps=False, verbose=True):
     try:
         mom_0_fn = topdir + ".mom0.fits.gz"
         mom_1_fn = topdir + ".mom1.fits.gz"
         mom_2_fn = topdir + ".mom2.fits.gz"
+        emom0_fn = topdir + ".emom0.fits.gz"
+        emom1_fn = topdir + ".emom1.fits.gz"
+        emom2_fn = topdir + ".emom2.fits.gz"
 
-        moment_maps = MomentMaps(mom0=mom_0_fn, mom1=mom_1_fn, mom2=mom_2_fn, data_index=data_index)
+
+        moment_maps = MomentMaps(mom0=mom_0_fn, mom1=mom_1_fn, mom2=mom_2_fn,
+                                 emom0=emom0_fn, emom1=emom1_fn, emom2=emom2_fn,
+                                  data_index=data_index)
         return moment_maps
     except Exception as e:
         if verbose:
