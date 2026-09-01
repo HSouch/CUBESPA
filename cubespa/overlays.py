@@ -17,7 +17,7 @@ def align_image(input_data: data.DataSet, data_to_align: data.DataSet, shape_out
         DataSet: A new DataSet object where the data is aligned with input_data
     """
 
-    input_wcs, align_wcs = utils.match_wcs_axes(input_data.wcs, data_to_align.wcs)
+    input_wcs, align_wcs = utils.match_wcs_axes(input_data.wcs.celestial, data_to_align.wcs.celestial)
 
     nddata = NDData(data=data_to_align.data, wcs=align_wcs)
 
