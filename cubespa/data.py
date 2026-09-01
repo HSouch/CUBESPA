@@ -10,7 +10,9 @@ from astropy.io import fits
 
 from scipy.signal import convolve2d
 
-from . import plotting
+from . import overlays, plotting
+
+import os
 
 
 class DataSet:
@@ -28,6 +30,11 @@ class DataSet:
         wcs = self.wcs.celestial
         return np.sqrt(wcs.pixel_scale_matrix[0,0]**2 + wcs.pixel_scale_matrix[1,0]**2) * 3600
     
+
+    def align_to(self, template: DataSet, shape_out=None):
+        return overlays.align_image(template, self, shape_out=None)
+
+
     def __repr__(self):
         dstring = str(self.data.shape) if self.data is not None else "NONE"
 
@@ -49,7 +56,7 @@ class MomentMaps:
             if type(val) == str:
                 self.__setattr__(attr, load_data(val, data_index=data_index))
             else:
-                self.__setattr__(attr, None)
+                self.__setattr__(attr, val)
 
 
     def __repr__(self):
@@ -85,22 +92,30 @@ def load_data(filename, data_index=0, rgb_index = None, label=None, verbose=True
 
 def load_moment_maps(topdir, data_index=0, load_error_maps=False, verbose=True):
     try:
-        mom_0_fn = topdir + ".mom0.fits.gz"
-        mom_1_fn = topdir + ".mom1.fits.gz"
-        mom_2_fn = topdir + ".mom2.fits.gz"
-        emom0_fn = topdir + ".emom0.fits.gz"
-        emom1_fn = topdir + ".emom1.fits.gz"
-        emom2_fn = topdir + ".emom2.fits.gz"
+        for stub in[".fits", ".fits.gz"]:
+            mom_0_fn = topdir + f".mom0{stub}"
+            if not os.path.exists(mom_0_fn):
+                continue
 
-
-        moment_maps = MomentMaps(mom0=mom_0_fn, mom1=mom_1_fn, mom2=mom_2_fn,
-                                 emom0=emom0_fn, emom1=emom1_fn, emom2=emom2_fn,
-                                  data_index=data_index)
-        return moment_maps
+            mom_0_fn = topdir + f".mom0{stub}"
+            mom_1_fn = topdir + f".mom1{stub}"
+            mom_2_fn = topdir + f".mom2{stub}"
+            emom0_fn = topdir + f".emom0{stub}"
+            emom1_fn = topdir + f".emom1{stub}"
+            emom2_fn = topdir + f".emom2{stub}"
+            try:
+                moment_maps = MomentMaps(mom0=mom_0_fn, mom1=mom_1_fn, mom2=mom_2_fn,
+                                        emom0=emom0_fn, emom1=emom1_fn, emom2=emom2_fn,
+                                        data_index=data_index)
+            except Exception as e:
+                continue
+            return moment_maps
     except Exception as e:
         if verbose:
             print(f"Error loading Moment Maps: {e}")
         return None
+    
+    return None
 
 
 
@@ -119,6 +134,8 @@ def handle_data(data, handler, data_index=0, verbose=True):
     elif type(data) == np.ndarray:
         logging.warn("Naked data loaded. No WCS or header included!")
         return utils.DataSet(data=data)
+    else:
+        return None
 
 
 def gen_cutout(data, limits):
@@ -160,7 +177,6 @@ def gen_cutout(cubespa_obj, cent, size, show_bbox=False):
 
     for i, additional in enumerate(cubespa_obj.additional_maps):
         cutout.additional_maps[i].data = additional.data[xmin:xmax, ymin:ymax]
-
 
     cutout.cube.data = new_cube
 
