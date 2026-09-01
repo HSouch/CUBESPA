@@ -7,6 +7,27 @@ import os
 import pickle
 
 
+from pathlib import Path
+
+from . import data, cubespa
+
+from tqdm import tqdm
+
+
+class Geometry:
+    def __init__(self, eps=None, pa=None, tail_angle=None):
+        self.eps = eps
+        self.pa = np.deg2rad(pa)
+        self.tail_angle = np.deg2rad(tail_angle)
+
+    def pa_deg(self):
+        return np.rad2deg(self.pa)
+    
+    def tail_angle_deg(self):
+        return np.rad2deg(self.tail_angle)
+
+
+
 def ellipse_coords(x, y, a, b, theta, num_points=100, b_is_ellipticity=False):
 
     # Generate angles for sampling
@@ -59,7 +80,6 @@ def centre_coords(input_wcs, ra, dec):
     return cent_x, cent_y
 
 
-
 def match_wcs_axes(wcs1, wcs2):
     """ Match the axes in WCS axes (mostly for image alignment with cubes and images).
         This method assumes that the ra/dec axes are always at indices 0 and 1.
@@ -93,7 +113,7 @@ def bounds_from_moment_map(data, padding=0):
     ymin, ymax = np.min(non_nans[0]) - padding, np.max(non_nans[0]) + padding
     xmin, xmax = np.min(non_nans[1]) - padding, np.max(non_nans[1]) + padding
 
-    return int(xmin), int(xmax), int(ymin), int(ymax)
+    return [int(xmin), int(xmax), int(ymin), int(ymax)]
 
 
 def pad_limits(limits, padding):
@@ -265,3 +285,98 @@ def load_pickle(filename):
     with open(filename, 'rb') as handle:
         out_object = pickle.load(handle)
     return out_object
+
+
+def resolve_name(name: str, suffix="_CO.fits"):
+    return name.strip().removesuffix(suffix)
+
+
+
+def look_for_mommaps(name, MOM_MAP_DIR):
+    name = resolve_name(name)
+    path = Path(f"{MOM_MAP_DIR}/{name}/") 
+
+    if not path.exists() and path.is_dir():
+        return None
+    
+    files = list(path.glob("*.mom0.fits.*"))
+    
+    if len(files) == 0:
+        return None
+    
+    else:
+        files.sort()
+        stem = str(files[0]).removesuffix(".gz").removesuffix(".mom0.fits")
+        return stem
+    
+
+def load_supporting_data(name, DIR, data_index=0, celestial_only=True, img_index=0):
+    path = Path(f"{DIR}/{name}.fits")
+    if not path.exists():
+        return None
+    for index in range(0, 2):
+        dataset = data.load_data(path, data_index=index)
+        if dataset:
+            break
+        
+    if celestial_only and len(dataset.data.shape) > 2:
+        dataset.wcs = dataset.wcs.celestial
+        dataset.data = dataset.data[img_index]
+    
+    return dataset
+
+
+def load_cubespa_objects(CO_DIR, MOM_MAP_DIR=None, ADDL_DIRS=[], ISOLIST_DIR=None, ATLAS=None, **kwargs):
+   
+    files = CO_DIR.glob("*.fits")
+    cs_objects = []
+
+    for f in tqdm(list(files)[:], desc=f"Loading Objects from: {CO_DIR}"):
+
+        co_name = str(f.name)
+        gal_name = resolve_name(f.name, suffix=kwargs.get("suffix", "_CO.fits"))
+
+        atlas_obj = ATLAS.galaxy_dict[gal_name] if ATLAS else {}
+
+        mom_maps = look_for_mommaps(co_name, MOM_MAP_DIR) if MOM_MAP_DIR else None
+
+        c = cubespa.CubeSPA(cube=str(f), 
+                            mom_maps=mom_maps, 
+                            limits="auto",
+                            name=gal_name,
+                            additional_maps={},
+                            **kwargs)
+        c.metadata["GAL"] = atlas_obj
+
+
+        if ISOLIST_DIR and os.path.isdir(ISOLIST_DIR):
+            isolist_fn = f"{ISOLIST_DIR}/{gal_name}{kwargs.get("isolist_suffix", ".isolist")}"
+            isolist = load_pickle(isolist_fn)
+            c.metadata["ISOLIST"] = isolist
+
+        # LOAD additional directories
+        if ADDL_DIRS and len(ADDL_DIRS) > 0:
+            for dir_name in ADDL_DIRS:
+                datadir = ADDL_DIRS[dir_name]
+                addl = load_supporting_data(gal_name, datadir)
+
+                if addl:
+                    if c.mom_maps:
+                        addl = addl.align_to(c.mom_maps.mom0)
+                    else:
+                        template = data.DataSet(data=c.cube.data[0], wcs=c.cube.wcs.celestial)
+                        addl = addl.align_to(template)
+
+                c.additional_maps["LEGACY"] = addl
+        
+        cs_objects.append(c)
+
+    return cs_objects
+
+
+def remap(a, amin, amax, bmin, bmax):
+    return bmin + (a - amin) * (bmax - bmin) / (amax - amin)
+
+
+def norm(a):
+    return a / np.sqrt(np.sum(a ** 2))
