@@ -9,7 +9,8 @@ import pickle
 
 from pathlib import Path
 
-from . import data, cubespa
+from .data import DataSet, load_data
+from .cubespa import CubeSPA, CubeSpaCollection
 
 from tqdm import tqdm
 
@@ -315,7 +316,7 @@ def load_supporting_data(name, DIR, data_index=0, celestial_only=True, img_index
     if not path.exists():
         return None
     for index in range(0, 2):
-        dataset = data.load_data(path, data_index=index)
+        dataset = load_data(path, data_index=index)
         if dataset:
             break
         
@@ -340,7 +341,7 @@ def load_cubespa_objects(CO_DIR, MOM_MAP_DIR=None, ADDL_DIRS=[], ISOLIST_DIR=Non
 
         mom_maps = look_for_mommaps(co_name, MOM_MAP_DIR) if MOM_MAP_DIR else None
 
-        c = cubespa.CubeSPA(cube=str(f), 
+        c = CubeSPA(cube=str(f), 
                             mom_maps=mom_maps, 
                             limits="auto",
                             name=gal_name,
@@ -364,7 +365,7 @@ def load_cubespa_objects(CO_DIR, MOM_MAP_DIR=None, ADDL_DIRS=[], ISOLIST_DIR=Non
                     if c.mom_maps:
                         addl = addl.align_to(c.mom_maps.mom0)
                     else:
-                        template = data.DataSet(data=c.cube.data[0], wcs=c.cube.wcs.celestial)
+                        template = DataSet(data=c.cube.data[0], wcs=c.cube.wcs.celestial)
                         addl = addl.align_to(template)
 
                 c.additional_maps["LEGACY"] = addl
