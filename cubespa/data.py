@@ -2,8 +2,6 @@ import numpy as np
 import logging
 import copy
 
-from . import utils
-
 from astropy.wcs import WCS
 from astropy.convolution import Tophat2DKernel
 from astropy.io import fits
@@ -31,7 +29,7 @@ class DataSet:
         return np.sqrt(wcs.pixel_scale_matrix[0,0]**2 + wcs.pixel_scale_matrix[1,0]**2) * 3600
     
 
-    def align_to(self, template: DataSet, shape_out=None):
+    def align_to(self, template, shape_out=None):
         return overlays.align_image(template, self, shape_out=None)
 
 
@@ -133,7 +131,7 @@ def handle_data(data, handler, data_index=0, verbose=True):
         return handler(data, data_index=data_index)
     elif type(data) == np.ndarray:
         logging.warn("Naked data loaded. No WCS or header included!")
-        return utils.DataSet(data=data)
+        return DataSet(data=data)
     else:
         return None
 

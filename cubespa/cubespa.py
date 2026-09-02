@@ -268,7 +268,7 @@ class CubeSpaCollection:
     
     @staticmethod
     def load(CO_DIR, MOM_MAP_DIR=None, ADDL_DIRS ={}, 
-             ISOLIST_DIR=None, ATLAS=None, **kwargs) -> CubeSpaCollection:
+             ISOLIST_DIR=None, ATLAS=None, **kwargs):
         """ 
         Uses the utils.load_cubespa_objects method to generate a list of Cubespa objects dynamically
 

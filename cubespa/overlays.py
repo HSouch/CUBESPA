@@ -6,7 +6,7 @@ from astropy.nddata import NDData
 from . import data, utils
 
 
-def align_image(input_data: data.DataSet, data_to_align: data.DataSet, shape_out=None):
+def align_image(input_data, data_to_align, shape_out=None):
     """ Align two dataset objects together.
 
     Args:
