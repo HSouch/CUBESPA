@@ -86,7 +86,7 @@ class CubeSPA:
         if center:
             center_x, center_y = center
             if center_type == "radec":
-                cx, cy = self.cube.wcs.celestial.wcs_world2pix(center_x, center_y, 0, 0)
+                cx, cy = self.cube.wcs.celestial.wcs_world2pix(center_x, center_y, 0)
                 self.center = (float(cx), float(cy))
             else:
                 self.center = (center_x, center_y)
