@@ -12,5 +12,5 @@ from .spectra import *          # Module for generating and analyzing spectra
 from .utils import *            # All miscellaneous utility modules
 
 
-__version__ = "0.0.9"
+__version__ = "0.1.1"
 
