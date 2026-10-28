@@ -1,26 +1,22 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools >= 77.0.3"]
 
 [project]
+dynamic = ["version"]
 name = "cubespa"
-version = "0.0.9"
-description = "A short description of the project"
-readme = "README.md"
-requires-python = ">=3.8"
-license = {text = "MIT"}
+description="Spectral cube processing and rendering made easy."
+readme="README.md"
+
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Harrison Souchereau", email = "harrison.souchereau@yale.edu"}
 ]
-keywords = ["example"]
+
+maintainers = [
+    {name = "Harrison Souchereau", email = "harrison.souchereau@yale.edu"}
+]
+
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
+    "Development Status :: 4 - Beta",
 ]
 
 dependencies = [
@@ -33,12 +29,11 @@ dependencies = [
     "maskmoment",
 ]
 
+requires-python = ">=3.10"
 
-[project.urls]
-# Homepage = "https://github.com/username/my-project"
-#Documentation = "https://github.com/username/my-project#readme"
-#Repository = "https://github.com/username/my-project.git"
-#Issues = "https://github.com/username/my-project/issues"
+[tool.setuptools.packages.find]
+include = ["cubespa*"]
 
-[tool.setuptools]
-packages = ["cubespa"]
+
+[tool.setuptools.dynamic]
+version = {attr = "cubespa.__version__"}
