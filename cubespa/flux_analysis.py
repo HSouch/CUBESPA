@@ -1,3 +1,4 @@
+from photutils.aperture import EllipticalAperture
 from .cubespa import CubeSPA
 import numpy as np
 from matplotlib import pyplot as plt
@@ -50,7 +51,6 @@ class FluxAnalysis:
         xs, ys = self.xy_map()
 
         tail_vector = self.tail_angle_vector()
-
 
         return xs * tail_vector[0] + ys * tail_vector[1]
 
@@ -113,6 +113,15 @@ class FluxAnalysis:
     def plot_cent(self, axis, **kwargs):
         cent = self.c_obj.center
         axis.scatter(cent[0], cent[1], **kwargs)
+
+    
+    def plot_disk(self, axis, **kwargs):
+        aper = EllipticalAperture((self.center[0], self.center[1]), 
+        self.Rtrunc, self.Rtrunc * (1 - self.stellar_ellip), self.stellar_pa,
+            )
+        
+        aper.plot(ax=axis, **kwargs)
+
 
     def plot_tail_angle(self, axis, length=50, **kwargs):
         cent_x, cent_y = self.c_obj.center
